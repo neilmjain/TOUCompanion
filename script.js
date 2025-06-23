@@ -1794,8 +1794,6 @@ function createPlayerEntry(playerName = '', role = '') {
         roleInput.style.color = newUniqueColor;
         roleInput.style.borderBottomColor = newUniqueColor; // For the underline of the role input
 
-        roleIconWrapper.style.borderColor = newUniqueColor;
-        roleIconWrapper.style.boxShadow = `0 0 8px ${newUniqueColor + '80'}`;
 
         // --- NEW CODE: Apply color to the entire playerEntryDiv's border and shadow ---
         playerEntryDiv.style.borderColor = newUniqueColor;
