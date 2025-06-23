@@ -1494,15 +1494,16 @@ True
 
 // ... (rest of script.js) ...
 
+// In script.js, locate the openModal function
+
 function openModal(entity) {
     const uniqueColor = entity.category === 'Role' ? roleColors[entity.name] : modifierColors[entity.name];
 
     modalName.textContent = entity.name.toUpperCase();
     modalName.style.color = uniqueColor || 'white';
 
-    // NEW/MODIFIED: Apply the team box styling to the modal team text as well
     const teamKey = entity.team.split(' ')[0];
-    const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.1)', boxShadow: '0 0 8px #00ffff' };
+    const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.2)', boxShadow: '0 0 8px #00ffff' };
 
     modalTeam.innerHTML = `
         <span class="team-display-box" style="
@@ -1515,40 +1516,43 @@ function openModal(entity) {
         </span>
     `;
 
-     modalDescription.textContent = entity.desc;
-    // Set the border-left-color for the modal description
+    modalDescription.textContent = entity.desc;
+    // --- NEW/MODIFIED: Set the border-left-color for the modal description dynamically ---
     modalDescription.style.borderLeftColor = uniqueColor || '#805ad5'; // Fallback to original purple
+    // --- END NEW/MODIFIED ---
 
-    modalIcon.src = `./Role Icons/${entity.icon}`; // Updated path
+    modalIcon.src = `./Role Icons/${entity.icon}`;
     modalIcon.onerror = function() {
         this.onerror = null;
-        this.src = `placeholder.png`; // Use your general placeholder
+        this.src = `placeholder.png`;
     };
-    modalIcon.className = 'modal-icon'; // Reset classes
+    modalIcon.className = 'modal-icon';
     if (entity.category === 'Modifier') {
-        modalIcon.classList.add('square'); // Modifiers are square icons in your provided images
+        modalIcon.classList.add('square');
     }
-    // Set border and shadow for the modal icon based on unique color, matching the image.
     modalIcon.style.border = `3px solid ${uniqueColor || 'cyan'}`;
     modalIcon.style.boxShadow = `0 0 15px ${uniqueColor ? uniqueColor + '90' : 'rgba(0, 255, 255, 0.6)'}`;
 
-
-    modalAbilityIcon.src = `./Abilities/${entity.skillIcon}`; // Updated path
+    modalAbilityIcon.src = `./Abilities/${entity.skillIcon}`;
     modalAbilityIcon.onerror = function() {
         this.onerror = null;
-        this.src = 'placeholder.png'; // Use your general placeholder
+        this.src = 'placeholder.png';
     };
     modalAbilityIcon.style.filter = `drop-shadow(0 0 6px ${uniqueColor || 'cyan'})`;
     modalAbilityName.textContent = entity.ability;
 
-    // Modal content border and shadow
     modalContent.style.boxShadow = `0 0 20px ${uniqueColor ? uniqueColor + '60' : 'rgba(0, 255, 255, 0.6)'}`;
     modalContent.style.border = `2px solid ${uniqueColor || 'cyan'}`;
+
+    // --- NEW CODE: Set CSS variables for modal scrollbar color ---
+    modalContent.style.setProperty('--modal-scrollbar-thumb-color', uniqueColor || 'cyan');
+    modalContent.style.setProperty('--modal-scrollbar-track-color', 'rgba(31, 31, 31, 0.5)'); // Slightly transparent dark for track
+    // --- END NEW CODE ---
 
 
     if (entity.settings && entity.settings.length > 0) {
         modalSettingsSection.style.display = 'block';
-        modalSettingsList.innerHTML = ''; // Clear previous settings
+        modalSettingsList.innerHTML = '';
         entity.settings.sort((a, b) => a.name.localeCompare(b.name)).forEach(setting => {
             const settingItem = document.createElement('div');
             settingItem.className = 'modal-setting-item';
@@ -1560,7 +1564,7 @@ function openModal(entity) {
     }
 
     detailModalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    document.body.style.overflow = 'hidden';
 }
 
     // Modal Elements (Role Wiki)
