@@ -527,7 +527,21 @@
         transform: scale(0.95);
         transition: transform 0.3s ease-in-out;
         /* Border dynamically set by JS */
+        scrollbar-width: thin; /* For Firefox */
+        scrollbar-color: var(--modal-scrollbar-thumb-color, cyan) var(--modal-scrollbar-track-color, #1f1f1f);
     }
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: var(--modal-scrollbar-track-color, #1f1f1f); /* Use CSS variable */
+    border-radius: 5px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--modal-scrollbar-thumb-color, cyan); /* Use CSS variable */
+    border-radius: 5px;
+    border: 2px solid var(--modal-scrollbar-track-color, #1f1f1f); /* Use CSS variable for border */
+}
     .modal-overlay.active .modal-content {
         transform: scale(1);
     }
@@ -588,7 +602,7 @@
         margin-bottom: 1.5rem;
         background-color: #1f1f1f;
         padding: 1rem;
-        border-left: 4px solid #805ad5; /* Purple accent for description */
+        border-left: 4px solid; /* Purple accent for description */
         border-radius: 0.5rem;
         word-wrap: break-word;
         overflow-wrap: break-word;
