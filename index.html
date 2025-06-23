@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Town Of Us: Companion</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="JavaScript" href="script.js">
+</head>
+<body class="p-6">
+  <div class="container mx-auto p-6 rounded-lg shadow-lg">
+    <div class="tab-nav">
+      <nav>
+        <p style="font-size: 12px; margin-bottom: 5px;">Credit to Malkiz, Quarties & OrzechMC for all Role Logos and Font</p>
+        <b></b>
+        <a><button class="tab-button active" data-tab="wiki">Role Wiki</button></a>
+        <a><button class="tab-button" data-tab="roles">Player Roles</button></a>
+        <a><button class="tab-button" data-tab="notes">General Notes</button></a>
+      </nav>
+    </div>
+
+    <!-- Role Wiki Tab -->
+    <div id="wiki-tab" class="tab-content active">
+      <div class="wiki-search-filter">
+        <input type="text" id="search-input" placeholder="Search for a role or modifier...">
+        <select id="combined-filter-select">
+            <option value="All">All Categories & Types</option>
+            <optgroup label="Roles">
+                <option value="Crewmate">Crewmate Role</option>
+                <option value="Neutral">Neutral Role</option>
+                <option value="Impostor">Impostor Role</option>
+            </optgroup>
+            <optgroup label="Modifiers">
+                <option value="Crewmate Modifier">Crewmate Modifier</option>
+                <option value="Global Modifier">Global Modifier</option>
+                <option value="Impostor Modifier">Impostor Modifier</option>
+            </optgroup>
+            <optgroup label="Types">
+                <option value="Kill">Kill</option>
+                <option value="Support">Support</option>
+                <option value="Detection">Detection</option>
+                <option value="Utility">Utility</option>
+                <option value="Sabotage">Sabotage</option>
+                <option value="Passive">Passive</option>
+                <option value="Active">Active</option>
+                <option value="Death Trigger">Death Trigger</option>
+                <option value="Buff">Buff</option>
+                <option value="Debuff">Debuff</option>
+                <option value="Defense">Defense</option>
+                <option value="Information">Information</option>
+                <option value="Social">Social</option>
+                <option value="Win Condition">Win Condition</option>
+                <option value="Other">Other</option>
+            </optgroup>
+        </select>
+      </div>
+      <div id="card-grid" class="card-grid">
+        <!-- Role cards will be rendered here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Player Roles Tab -->
+    <div id="roles-tab" class="tab-content">
+      <h2 class="headers">Jot Down Player Roles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="playerRolesList">
+        <!-- Player entries will be added here by JavaScript -->
+      </div>
+      <div class="flex justify-center gap-4 mt-6">
+        <button id="addPlayerBtn" class="main-button">Add Player</button>
+        <button id="saveRolesBtn" class="main-button">Save Roles</button>
+        <button id="clearRolesBtn" class="main-button red">Clear Roles</button>
+      </div>
+    </div>
+
+    <!-- General Notes Tab -->
+    <div id="notes-tab" class="tab-content">
+      <h2 class="headers">General Notes</h2>
+      <textarea id="generalNotesTextarea" placeholder="Write your notes here..."></textarea>
+      <div class="flex justify-end mt-4">
+        <button id="saveGeneralNotesBtn" class="main-button green">Save Notes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal for Role Wiki -->
+  <div id="detail-modal-overlay" class="modal-overlay">
+    <div id="detail-modal-content" class="modal-content">
+      <button id="modal-close-button" class="modal-close-button">&times;</button>
+      <div class="modal-header">
+        <img id="modal-icon" class="modal-icon" src="" alt="Entity Icon" onerror="this.onerror=null;this.src='placeholder.png';">
+        <div>
+          <h2 id="modal-name" class="modal-name"></h2>
+          <p id="modal-team" class="modal-team"></p>
+        </div>
+      </div>
+      <p id="modal-description" class="modal-description"></p>
+
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <h3 class="modal-section-title">Abilities</h3>
+          <div id="modal-ability-item" class="modal-ability-item">
+            <img id="modal-ability-icon" class="modal-ability-icon" src="" alt="Ability Icon" onerror="this.onerror=null;this.src='placeholder.png';">
+            <span id="modal-ability-name"></span>
+          </div>
+        </div>
+
+        <div id="modal-settings-section" class="flex-1" style="display: none;">
+          <h3 class="modal-section-title settings">Settings</h3>
+          <div id="modal-settings-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Message Box Container -->
+  <div id="messageBoxOverlay" class="message-box-overlay">
+    <div class="message-box">
+        <p id="messageBoxText"></p>
+        <div class="message-box-buttons">
+            <button id="messageBoxConfirm" class="main-button">OK</button>
+            <button id="messageBoxCancel" class="main-button red hidden">Cancel</button>
+        </div>
+    </div>
+  </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
