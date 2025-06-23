@@ -1494,7 +1494,90 @@ True
 
 // ... (rest of script.js) ...
 
-// In script.js, locate the openModal function
+function openModal(entity) {
+    const uniqueColor = entity.category === 'Role' ? roleColors[entity.name] : modifierColors[entity.name];
+
+    modalName.textContent = entity.name.toUpperCase();
+    modalName.style.color = uniqueColor || 'white';
+
+    // NEW/MODIFIED: Apply the team box styling to the modal team text as well
+    const teamKey = entity.team.split(' ')[0];
+    const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.1)', boxShadow: '0 0 8px #00ffff' };
+
+    modalTeam.innerHTML = `
+        <span class="team-display-box" style="
+            background-color: ${teamStyle.boxBg};
+            box-shadow: ${teamStyle.boxShadow};
+            color: ${teamStyle.dotColor};
+            border: 1px solid ${teamStyle.dotColor};
+        ">
+            TEAM: ${entity.team.toUpperCase()}
+        </span>
+    `;
+
+     modalDescription.textContent = entity.desc;
+    // Set the border-left-color for the modal description
+    modalDescription.style.borderLeftColor = uniqueColor || '#805ad5'; // Fallback to original purple
+
+    modalIcon.src = `./Role Icons/${entity.icon}`; // Updated path
+    modalIcon.onerror = function() {
+        this.onerror = null;
+        this.src = `placeholder.png`; // Use your general placeholder
+    };
+    modalIcon.className = 'modal-icon'; // Reset classes
+    if (entity.category === 'Modifier') {
+        modalIcon.classList.add('square'); // Modifiers are square icons in your provided images
+    }
+    // Set border and shadow for the modal icon based on unique color, matching the image.
+    modalIcon.style.border = `3px solid ${uniqueColor || 'cyan'}`;
+    modalIcon.style.boxShadow = `0 0 15px ${uniqueColor ? uniqueColor + '90' : 'rgba(0, 255, 255, 0.6)'}`;
+
+
+    modalAbilityIcon.src = `./Abilities/${entity.skillIcon}`; // Updated path
+    modalAbilityIcon.onerror = function() {
+        this.onerror = null;
+        this.src = 'placeholder.png'; // Use your general placeholder
+    };
+    modalAbilityIcon.style.filter = `drop-shadow(0 0 6px ${uniqueColor || 'cyan'})`;
+    modalAbilityName.textContent = entity.ability;
+
+    // Modal content border and shadow
+    modalContent.style.boxShadow = `0 0 20px ${uniqueColor ? uniqueColor + '60' : 'rgba(0, 255, 255, 0.6)'}`;
+    modalContent.style.border = `2px solid ${uniqueColor || 'cyan'}`;
+
+
+    if (entity.settings && entity.settings.length > 0) {
+        modalSettingsSection.style.display = 'block';
+        modalSettingsList.innerHTML = ''; // Clear previous settings
+        entity.settings.sort((a, b) => a.name.localeCompare(b.name)).forEach(setting => {
+            const settingItem = document.createElement('div');
+            settingItem.className = 'modal-setting-item';
+            settingItem.textContent = `${setting.name}: ${setting.value}`;
+            modalSettingsList.appendChild(settingItem);
+        });
+    } else {
+        modalSettingsSection.style.display = 'none';
+    }
+
+    detailModalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+}
+
+    // Modal Elements (Role Wiki)
+    const detailModalOverlay = document.getElementById('detail-modal-overlay');
+    const modalCloseButton = document.getElementById('modal-close-button');
+    const modalIcon = document.getElementById('modal-icon');
+    const modalName = document.getElementById('modal-name');
+    const modalTeam = document.getElementById('modal-team');
+    const modalDescription = document.getElementById('modal-description');
+    const modalAbilityIcon = document.getElementById('modal-ability-icon');
+    const modalAbilityName = document.getElementById('modal-ability-name');
+    const modalSettingsSection = document.getElementById('modal-settings-section');
+    const modalSettingsList = document.getElementById('modal-settings-list');
+    const modalContent = document.getElementById('detail-modal-content');
+
+
+    // In script.js, locate the openModal function
 
 function openModal(entity) {
     const uniqueColor = entity.category === 'Role' ? roleColors[entity.name] : modifierColors[entity.name];
@@ -1566,70 +1649,6 @@ function openModal(entity) {
     detailModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
-
-    // Modal Elements (Role Wiki)
-    const detailModalOverlay = document.getElementById('detail-modal-overlay');
-    const modalCloseButton = document.getElementById('modal-close-button');
-    const modalIcon = document.getElementById('modal-icon');
-    const modalName = document.getElementById('modal-name');
-    const modalTeam = document.getElementById('modal-team');
-    const modalDescription = document.getElementById('modal-description');
-    const modalAbilityIcon = document.getElementById('modal-ability-icon');
-    const modalAbilityName = document.getElementById('modal-ability-name');
-    const modalSettingsSection = document.getElementById('modal-settings-section');
-    const modalSettingsList = document.getElementById('modal-settings-list');
-    const modalContent = document.getElementById('detail-modal-content');
-
-
-    function openModal(entity) {
-        const uniqueColor = entity.category === 'Role' ? roleColors[entity.name] : modifierColors[entity.name];
-
-        modalName.textContent = entity.name.toUpperCase();
-        modalName.style.color = uniqueColor || 'white';
-        modalTeam.textContent = `TEAM: ${entity.team.toUpperCase()}`;
-        modalTeam.style.color = teamColors[entity.team.split(' ')[0]] ? teamColors[entity.team.split(' ')[0]].dotColor : 'cyan';
-        modalDescription.textContent = entity.desc;
-
-        modalIcon.src = `./Role Icons/${entity.icon}`; // Updated path
-        modalIcon.onerror = function() {
-            this.onerror = null;
-            this.src = `https://placehold.co/${entity.category === 'Role' ? '100x100' : '90x90'}/1f1f1f/FFFFFF?text=?`;
-        };
-        modalIcon.className = 'modal-icon'; // Reset classes
-        if (entity.category === 'Modifier') {
-            modalIcon.classList.add('circle');
-        }
-        
-
-        modalAbilityIcon.src = `./Abilities/${entity.skillIcon}`; // Updated path
-        modalAbilityIcon.onerror = function() {
-            this.onerror = null;
-            this.src = 'https://placehold.co/32x32/1f1f1f/FFFFFF?text=A';
-        };
-        modalAbilityIcon.style.filter = `drop-shadow(0 0 6px ${uniqueColor || 'cyan'})`;
-        modalAbilityName.textContent = entity.ability;
-
-        // Modal content border and shadow
-        modalContent.style.boxShadow = `0 0 20px ${uniqueColor ? uniqueColor + '60' : 'rgba(0, 255, 255, 0.6)'}`;
-        modalContent.style.border = `2px solid ${uniqueColor || 'cyan'}`;
-
-
-        if (entity.settings && entity.settings.length > 0) {
-            modalSettingsSection.style.display = 'block';
-            modalSettingsList.innerHTML = ''; // Clear previous settings
-            entity.settings.sort((a, b) => a.name.localeCompare(b.name)).forEach(setting => {
-                const settingItem = document.createElement('div');
-                settingItem.className = 'modal-setting-item';
-                settingItem.textContent = `${setting.name}: ${setting.value}`;
-                modalSettingsList.appendChild(settingItem);
-            });
-        } else {
-            modalSettingsSection.style.display = 'none';
-        }
-
-        detailModalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-    }
 
     function closeModal() {
         detailModalOverlay.classList.remove('active');
