@@ -1765,11 +1765,11 @@ function createPlayerEntry(playerName = '', role = '') {
     /**
      * Updates the role icon, text color, and wrapper styles based on the role input value.
      */
-    const updatePlayerRoleIconAndStyles = () => {
-        const rawRoleName = roleInput.value.trim(); // Get the current value from the input, trim whitespace
+    // In script.js, inside the createPlayerEntry function...
 
-        // Normalize the input to Title Case for accurate lookup in roleColors and modifierColors.
-        // Example: "swooper" becomes "Swooper", "button barry" becomes "Button Barry".
+    const updatePlayerRoleIconAndStyles = () => {
+        const rawRoleName = roleInput.value.trim();
+
         let normalizedRoleName = '';
         if (rawRoleName.length > 0) {
             normalizedRoleName = rawRoleName.split(' ')
@@ -1777,12 +1777,9 @@ function createPlayerEntry(playerName = '', role = '') {
                 .join(' ');
         }
 
-        // Get the image URL based on the normalized role name
         const newImageUrl = getRoleImageUrl(normalizedRoleName);
 
-        // Determine the correct color based on the normalized role name
-        // Default to cyan (#00ffff) if the role is not found in either map.
-        let newUniqueColor = '#00ffff';
+        let newUniqueColor = '#00ffff'; // Default to cyan
 
         if (roleColors[normalizedRoleName]) {
             newUniqueColor = roleColors[normalizedRoleName];
@@ -1790,16 +1787,31 @@ function createPlayerEntry(playerName = '', role = '') {
             newUniqueColor = modifierColors[normalizedRoleName];
         }
 
-        // Apply the updated properties to the elements
+        // Apply properties to the elements
         roleIconImg.src = newImageUrl;
         roleIconImg.alt = `${normalizedRoleName || 'Unknown Role'} Icon`;
+
         roleInput.style.color = newUniqueColor;
-        roleInput.style.borderColor = newUniqueColor; // <--- ADD OR CHANGE THIS LINE
-        roleInput.style.borderBottomColor = newUniqueColor; // <--- ADD THIS LINE FOR UNDERLINE
-        roleInput.style.boxShadow = newUniqueColor;
+        roleInput.style.borderBottomColor = newUniqueColor; // For the underline of the role input
+
         roleIconWrapper.style.borderColor = newUniqueColor;
-      
+        roleIconWrapper.style.boxShadow = `0 0 8px ${newUniqueColor + '80'}`;
+
+        // --- NEW CODE: Apply color to the entire playerEntryDiv's border and shadow ---
+        playerEntryDiv.style.borderColor = newUniqueColor;
+        playerEntryDiv.style.boxShadow = `0 0 15px ${newUniqueColor + '60'}`; // A more pronounced glow for the whole card
+
+        // Optional: Add a hover effect for the entire card
+        playerEntryDiv.onmouseenter = () => {
+            playerEntryDiv.style.boxShadow = `0 0 20px ${newUniqueColor + '80'}`;
+        };
+        playerEntryDiv.onmouseleave = () => {
+            playerEntryDiv.style.boxShadow = `0 0 15px ${newUniqueColor + '60'}`;
+        };
+        // --- END NEW CODE ---
     };
+
+// ... rest of createPlayerEntry function ...
 
     // Attach event listeners for dynamic updates and saving
     roleInput.addEventListener('input', () => {
