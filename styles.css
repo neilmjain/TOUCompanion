@@ -1,43 +1,870 @@
+/* Custom Fonts */
 @font-face {
     font-family: 'Amatic SC';
-    src: url('0a1915693ca58e3e-s.p.woff') format('woff');
+    src: url('https://fonts.gstatic.com/s/amaticsc/v15/TUZyGwF8dfSGfVUGpvM_Gw.woff2') format('woff2'); /* Using Google Fonts WOFF2 directly for Amatic SC */
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    }
-    @keyframes colorChangeShadow {
-        0% { box-shadow: 0 0 15px #ff0000; } /* Neon Red */
-        10% { box-shadow: 0 0 15px #ff8800; } /* Neon Red */
-        20% { box-shadow: 0 0 15px #fffb00; } /* Neon Cyan */
-        40% { box-shadow: 0 0 15px #00ff00; } /* Neon Green */
-        60% { box-shadow: 0 0 15px #00ffea; } /* Neon Green */
-        80% { box-shadow: 0 0 15px #007bff; } /* Neon Blue */
-        100% { box-shadow: 0 0 15px #ff00ff; } /* Neon Purple */
-    }
-     @keyframes colorChangeBorder {
-        0% { border-color:  #ff0000; } /* Neon Red */
-        10% { border-color: #ff8800; } /* Neon Red */
-        20% { border-color: #fffb00; } /* Neon Cyan */
-        40% { border-color: #00ff00; } /* Neon Green */
-        60% { border-color: #00ffea; } /* Neon Green */
-        80% { border-color: #007bff; } /* Neon Blue */
-        100% { border-color:#ff00ff; } /* Neon Purple */
+}
+
+/* Base Body Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a202c; /* Tailwind's gray-900 */
+    color: #edf2f7; /* Tailwind's gray-100 */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem; /* Smaller padding on mobile */
+}
+
+/* Container for main content */
+.container {
+    background-color: #2d3748; /* Tailwind's gray-800 */
+    border-radius: 0.75rem; /* rounded-lg */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* shadow-lg */
+    padding: 1rem; /* p-4 on mobile */
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't overflow on small screens */
+    margin: auto; /* Center the container */
+}
+
+/* Animations for glow effects */
+@keyframes colorChangeShadow {
+    0% { box-shadow: 0 0 15px #ff0000; } /* Neon Red */
+    10% { box-shadow: 0 0 15px #ff8800; } /* Neon Orange */
+    20% { box-shadow: 0 0 15px #fffb00; } /* Neon Yellow */
+    40% { box-shadow: 0 0 15px #00ff00; } /* Neon Green */
+    60% { box-shadow: 0 0 15px #00ffea; } /* Neon Cyan */
+    80% { box-shadow: 0 0 15px #007bff; } /* Neon Blue */
+    100% { box-shadow: 0 0 15px #ff00ff; } /* Neon Magenta */
+}
+
+@keyframes colorChangeBorder {
+    0% { border-color: #ff0000; }
+    10% { border-color: #ff8800; }
+    20% { border-color: #fffb00; }
+    40% { border-color: #00ff00; }
+    60% { border-color: #00ffea; }
+    80% { border-color: #007bff; }
+    100% { border-color: #ff00ff; }
+}
+
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    gap: 0.5rem; /* Smaller gap on mobile */
+    margin-bottom: 1.5rem; /* mb-6 */
+    width: 100%; /* Full width */
+}
+
+.tab-button {
+    flex-grow: 1; /* Allow buttons to grow */
+    background-color: #4a5568; /* Tailwind's gray-700 */
+    color: #cbd5e0; /* Tailwind's gray-300 */
+    font-family: 'Amatic SC', cursive; /* Use Amatic for tabs */
+    font-size: 1.25rem; /* text-lg on mobile, text-xl sm:text-xl, md:text-2xl */
+    font-weight: 700; /* bold */
+    padding: 0.75rem 1rem; /* px-4 py-2 */
+    border-radius: 9999px; /* rounded-full */
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button:hover {
+    background-color: #616e7f; /* Lighter gray on hover */
+    color: #e2e8f0; /* Lighter text */
+}
+
+.tab-button.active {
+    background-color: #38b2ac; /* Tailwind's teal-500 */
+    color: #1a202c; /* Dark text for contrast */
+    border-color: #00ffff; /* Neon Cyan border */
+    animation: colorChangeBorder 4s infinite alternate, colorChangeShadow 4s infinite alternate;
+    box-shadow: 0 0 15px #00ffff; /* Initial glow for active tab */
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    padding: 0.5rem; /* Add some padding */
+    width: 100%; /* Ensure full width */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Search and Filter Inputs */
+#search-input,
+#combined-filter-select {
+    padding: 0.75rem; /* p-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: #4a5568; /* gray-700 */
+    color: #edf2f7; /* gray-100 */
+    border: 1px solid #4a5568; /* gray-600 */
+    width: 100%; /* Full width */
+    font-size: 1rem; /* base */
+}
+
+#search-input::placeholder {
+    color: #a0aec0; /* gray-400 */
+}
+
+#search-input:focus,
+#combined-filter-select:focus {
+    border-color: #06b6d4; /* cyan-400 */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.5); /* ring cyan-400 */
+}
+
+/* Role Wiki Card Grid */
+#card-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1rem; /* gap-4 */
+    padding: 0.5rem; /* Add some padding */
+}
+
+/* Role Card Styling */
+.role-card {
+    background-color: #2d3748; /* gray-800 */
+    border-radius: 0.75rem; /* rounded-lg */
+    padding: 1rem; /* p-4 */
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border: 2px solid transparent; /* For initial state */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensure content stays within borders */
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); /* Default glow, overridden by JS */
+}
+
+.role-card-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    flex-direction: column; /* Stack on mobile */
+    text-align: center;
+}
+
+.role-card-header .icon-container {
+    width: 80px; /* Adjust size for mobile */
+    height: 80px;
+    margin: 0 auto 0.5rem auto; /* Center icon on mobile */
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* Dynamic glow */
+    border: 2px solid; /* Dynamic border color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05); /* Light background for icons */
+}
+
+.role-card-header .role-icon,
+.role-card-header .modifier-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8)); /* Dynamic glow */
+}
+
+.role-card-header .text-container {
+    flex-grow: 1;
+    width: 100%; /* Full width on mobile */
+}
+
+.role-card h2 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.8rem; /* Smaller on mobile */
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    text-align: center; /* Center on mobile */
+}
+
+.team-display-box {
+    display: inline-block;
+    padding: 0.2rem 0.5rem; /* Smaller padding */
+    border-radius: 0.5rem;
+    font-size: 0.75rem; /* Smaller font */
+    font-weight: 600;
+    margin: 0 auto; /* Center on mobile */
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+}
+
+.description-abilities-settings {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to grow */
+}
+
+.description-text {
+    font-size: 0.9rem; /* Smaller on mobile */
+    margin-bottom: 1rem;
+    padding-left: 0.75rem;
+    border-left: 4px solid; /* Dynamic color from JS */
+    color: #a0aec0; /* gray-400 */
+    overflow-y: auto;
+    max-height: 100px; /* Limit height and add scroll for long descriptions */
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-scrollbar-thumb-color) var(--card-scrollbar-track-color);
+}
+
+/* Custom scrollbar for description */
+.description-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+.description-text::-webkit-scrollbar-track {
+    background: var(--card-scrollbar-track-color);
+    border-radius: 10px;
+}
+
+.description-text::-webkit-scrollbar-thumb {
+    background: var(--card-scrollbar-thumb-color);
+    border-radius: 10px;
+}
+
+.abilities-section,
+.settings-section {
+    background-color: #313a49; /* Slightly darker than card bg */
+    border-radius: 0.5rem;
+    padding: 0.75rem; /* Smaller padding */
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.abilities-section h3,
+.settings-section h3 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.5rem; /* Smaller on mobile */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.modal-ability-item,
+.flex.items-center { /* For abilities in cards */
+    display: flex;
+    align-items: center;
+}
+
+.ability-icon {
+    width: 32px; /* Smaller ability icons on mobile */
+    height: 32px;
+    margin-right: 0.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8)); /* Dynamic glow */
+}
+
+.abilities-section span {
+    font-size: 0.9rem; /* Smaller text */
+}
+
+.settings-section ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    font-size: 0.85rem; /* Smaller text */
+    color: #a0aec0; /* gray-400 */
+    max-height: 80px; /* Limit height and add scroll */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-scrollbar-thumb-color) var(--card-scrollbar-track-color);
+}
+
+/* Custom scrollbar for settings */
+.settings-section ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.settings-section ul::-webkit-scrollbar-track {
+    background: var(--card-scrollbar-track-color);
+    border-radius: 10px;
+}
+
+.settings-section ul::-webkit-scrollbar-thumb {
+    background: var(--card-scrollbar-thumb-color);
+    border-radius: 10px;
+}
+
+
+/* Player Roles List */
+#playerRolesList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* space-y-4 */
+}
+
+.player-entry {
+    background-color: #2d3748; /* gray-800 */
+    border-radius: 0.75rem; /* rounded-lg */
+    padding: 0.75rem; /* p-3 */
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    align-items: center;
+    gap: 0.5rem; /* gap-3 */
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent; /* Dynamic border */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); /* Dynamic glow */
+}
+
+.player-entry input {
+    background-color: #4a5568; /* gray-700 */
+    color: #edf2f7; /* gray-100 */
+    border: 1px solid #4a5568;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    flex-grow: 1;
+    font-size: 1rem; /* Smaller input font */
+    width: 100%; /* Full width on mobile */
+    text-align: center; /* Center text in inputs */
+    transition: border-color 0.2s ease-in-out;
+    border-bottom: 2px solid; /* Dynamic color from JS */
+}
+
+.player-name-input {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.role-input {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+}
+
+.player-entry input:focus {
+    outline: none;
+    border-color: #06b6d4; /* cyan-400 */
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.4);
+}
+
+.player-entry .role-icon-wrapper {
+    width: 60px; /* Smaller icon wrapper */
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid; /* Dynamic border color */
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.6); /* Dynamic glow */
+    background-color: rgba(255, 255, 255, 0.05); /* Light background for icons */
+    margin: 0 auto; /* Center on mobile */
+}
+
+.player-entry .role-icon-small {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.remove-player-btn {
+    background-color: #ef4444; /* Red-500 */
+    color: white;
+    padding: 0.3rem 0.6rem; /* Smaller padding */
+    border-radius: 0.5rem;
+    font-size: 0.8rem; /* Smaller font */
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%; /* Full width on mobile */
+    margin-top: 0.5rem; /* Space from inputs */
+}
+
+.remove-player-btn:hover {
+    background-color: #dc2626; /* Red-600 */
+}
+
+/* Main Buttons */
+.main-button {
+    background-color: #8b5cf6; /* purple-500 */
+    color: white;
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    border-radius: 0.75rem; /* rounded-xl */
+    font-size: 1.1rem; /* Text size for buttons */
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width on mobile */
+}
+
+.main-button:hover {
+    background-color: #7c3aed; /* purple-600 */
+    transform: translateY(-2px);
+}
+
+.main-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.main-button.danger-button {
+    background-color: #dc2626; /* red-600 */
+}
+
+.main-button.danger-button:hover {
+    background-color: #b91c1c; /* red-700 */
+}
+
+/* General Notes Textarea */
+#generalNotesTextarea {
+    min-height: 150px; /* Adjust height for mobile */
+    font-size: 1rem; /* Base font size */
+    padding: 1rem;
+    background-color: #4a5568;
+    color: #edf2f7;
+    border-radius: 0.5rem;
+    border: 1px solid #4a5568;
+    resize: vertical; /* Allow vertical resizing */
+}
+
+#generalNotesTextarea:focus {
+    border-color: #10b981; /* emerald-400 */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #2d3748; /* gray-800 */
+    border-radius: 1rem; /* rounded-2xl */
+    padding: 1.5rem; /* p-6 */
+    width: 95%; /* Wider on mobile */
+    max-width: 500px; /* Max width */
+    max-height: 95vh; /* Limit height on small screens */
+    overflow-y: auto; /* Enable scrolling for modal content */
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-out;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #e2e8f0; /* gray-200 */
+    font-size: 2.5rem; /* Large for touch target */
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.modal-close-button:hover {
+    color: #ef4444; /* red-500 */
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1.5rem; /* mb-6 */
+    gap: 0.75rem;
+}
+
+.modal-icon {
+    width: 96px; /* w-24 h-24 on mobile */
+    height: 96px;
+    margin-bottom: 1rem; /* mb-4 on mobile */
+    border-radius: 50%;
+    object-fit: contain;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Dynamic glow */
+    border: 3px solid; /* Dynamic border color */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-name {
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.8rem; /* text-4xl on mobile */
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.modal-team {
+    padding: 0.3rem 0.8rem; /* px-3 py-1 */
+    border-radius: 9999px; /* rounded-full */
+    font-size: 0.9rem; /* text-base on mobile */
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+}
+
+.modal-description {
+    color: #d1d5db; /* gray-300 */
+    font-size: 1rem; /* text-base on mobile */
+    margin-bottom: 1.5rem; /* mb-6 */
+    line-height: 1.7;
+    border-left: 4px solid; /* Dynamic color from JS */
+    padding-left: 1rem; /* pl-4 */
+}
+
+.modal-section-title {
+    font-family: 'Amatic SC', cursive;
+    font-size: 1.8rem; /* text-2xl on mobile */
+    font-weight: bold;
+    margin-bottom: 0.75rem; /* mb-3 */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.modal-ability-item {
+    background-color: #4a5568; /* gray-700 */
+    padding: 0.75rem; /* p-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Ensure ability icon and text are inline */
+    align-items: center;
+}
+
+.modal-ability-icon {
+    width: 48px; /* w-12 h-12 on mobile */
+    height: 48px;
+    margin-right: 0.75rem; /* mr-3 */
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.8)); /* Dynamic glow */
+}
+
+#modal-ability-name {
+    font-size: 1.125rem; /* text-lg on mobile */
+    font-weight: 500;
+    color: #e2e8f0; /* gray-200 */
+}
+
+#modal-settings-list {
+    background-color: #4a5568; /* gray-700 */
+    padding: 0.75rem; /* p-3 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem; /* text-base on mobile */
+    list-style-type: disc;
+    list-style-position: inside;
+    color: #a0aec0; /* gray-400 */
+    max-height: 160px; /* max-h-48 on mobile */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #f7fafc #4a5568; /* thumb and track */
+}
+
+/* Custom scrollbar for modal settings */
+#modal-settings-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal-settings-list::-webkit-scrollbar-track {
+    background: #4a5568; /* gray-700 */
+    border-radius: 10px;
+}
+
+#modal-settings-list::-webkit-scrollbar-thumb {
+    background: #f7fafc; /* gray-100 */
+    border-radius: 10px;
+}
+
+/* Message Box Styling */
+.message-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Above modal */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.message-box-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.message-box {
+    background-color: #2d3748; /* gray-800 */
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 90%; /* Wider on mobile */
+    max-width: 400px; /* Max width */
+    animation: fadeIn 0.3s ease-out;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+}
+
+.message-box-overlay.active .message-box {
+    transform: scale(1);
+}
+
+.message-box-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons on mobile */
+    gap: 0.75rem; /* Gap between stacked buttons */
+    margin-top: 1rem; /* Space from text */
+}
+
+.message-box-buttons button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%; /* Full width on mobile */
+}
+
+.message-box-buttons #messageBoxConfirm {
+    background-color: #8b5cf6; /* purple-600 */
+    color: white;
+}
+
+.message-box-buttons #messageBoxConfirm:hover {
+    background-color: #7c3aed; /* purple-700 */
+}
+
+.message-box-buttons #messageBoxCancel {
+    background-color: #4a5568; /* gray-600 */
+    color: white;
+}
+
+.message-box-buttons #messageBoxCancel:hover {
+    background-color: #2d3748; /* gray-700 */
+}
+
+/* Responsive adjustments for larger screens (sm, md, lg breakpoints) */
+@media (min-width: 640px) { /* sm breakpoint */
+    body {
+        padding: 1.5rem; /* p-6 */
     }
 
-    /* Update .notepad-container style */
     .container {
-        background-color: rgb(44, 44, 44, 0.3);
-        border-radius: 10px; /* Changed from 1rem to 10px for consistency with other border-radius values in this file */
-        padding: 40px; /* Adjusted from p-10/12/16 to a fixed value */
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 24px; /* Adjusted from gap-8 to a fixed value */
-        /* shadow-lg is a Tailwind class, keep it if you still want its effect, or replace with custom box-shadow */
-        /* For a stronger effect, you can remove shadow-lg and rely solely on the animation */
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Initial shadow, will be overridden by animation */
-        animation: colorChangeShadow 10s infinite alternate; /* Apply the animation */
+        padding: 1.5rem; /* p-6 */
+    }
+
+    .tab-nav {
+        flex-direction: row; /* Row on larger screens */
+        gap: 1rem; /* gap-4 */
+    }
+
+    .tab-button {
+        font-size: 1.5rem; /* sm:text-xl */
+        padding: 0.5rem 1rem;
+    }
+
+    #search-input,
+    #combined-filter-select {
+        font-size: 1.125rem; /* sm:text-lg */
+    }
+
+    #card-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on sm */
+    }
+
+    .role-card-header {
+        flex-direction: row; /* Row on larger screens */
+        text-align: left;
+    }
+
+    .role-card-header .icon-container {
+        width: 96px; /* w-24 */
+        height: 96px;
+        margin: 0 1rem 0 0; /* mr-4 */
+    }
+
+    .role-card h2 {
+        font-size: 2.25rem; /* md:text-3xl */
+    }
+
+    .team-display-box {
+        margin: 0; /* Align left */
+    }
+
+    .abilities-section h3,
+    .settings-section h3 {
+        font-size: 1.75rem; /* sm:text-2xl */
+    }
+
+    .ability-icon {
+        width: 40px; /* sm:w-10 */
+        height: 40px; /* sm:h-10 */
+    }
+
+    .abilities-section span {
+        font-size: 1rem; /* sm:text-base */
+    }
+
+    .settings-section ul {
+        font-size: 0.9rem; /* sm:text-sm */
+    }
+
+    .player-entry {
+        flex-direction: row; /* Row on larger screens */
+        gap: 0.8rem; /* gap-2 */
+        padding: 0.8rem; /* p-3 */
+    }
+
+    .player-entry input {
+        font-size: 1.25rem; /* lg:text-xl */
+        text-align: left; /* Align left */
+    }
+
+    .player-entry .role-icon-wrapper {
+        width: 70px; /* sm:w-16 */
+        height: 70px; /* sm:h-16 */
+        margin: 0; /* Remove auto margin */
+    }
+
+    .remove-player-btn {
+        width: auto; /* Auto width */
+        margin-top: 0; /* Remove margin */
+    }
+
+    .main-button {
+        width: auto; /* Auto width */
+        font-size: 1.25rem; /* sm:text-xl */
+        padding: 0.75rem 1.5rem;
+    }
+
+    .message-box-buttons {
+        flex-direction: row; /* Row on larger screens */
+    }
+
+    .message-box-buttons button {
+        width: auto;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 600px; /* Slightly larger on medium screens */
+    }
+    .modal-icon {
+        width: 112px; /* sm:w-28 h-28 */
+        height: 112px;
+        margin-bottom: 0; /* Remove mb */
+        margin-right: 1rem; /* Add mr */
+    }
+    .modal-name {
+        font-size: 3.5rem; /* sm:text-5xl */
+    }
+    .modal-team {
+        font-size: 1rem; /* sm:text-lg */
+    }
+    .modal-description {
+        font-size: 1.125rem; /* sm:text-lg */
+    }
+    .modal-section-title {
+        font-size: 2rem; /* sm:text-3xl */
+    }
+    .modal-ability-icon {
+        width: 64px; /* sm:w-16 h-16 */
+        height: 64px;
+    }
+    #modal-ability-name {
+        font-size: 1.25rem; /* sm:text-xl */
+    }
+    #modal-settings-list {
+        font-size: 1.125rem; /* sm:text-lg */
+    }
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    #card-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on md */
+    }
+
+    .player-entry input {
+        font-size: 1.125rem; /* text-lg */
+    }
+
+    .player-entry .role-icon-wrapper {
+        width: 80px; /* md:w-20 */
+        height: 80px; /* md:h-20 */
+    }
+
+    .remove-player-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        max-width: 768px; /* Larger max-width on desktop */
+    }
+    .modal-header {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+    .container {
+        max-width: 1280px; /* Even wider on large screens */
+    }
+
+    #card-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on lg */
+    }
+    /* Larger text for main sections on desktop */
+    .tab-button {
+        font-size: 1.75rem; /* lg:text-3xl */
+    }
+    .modal-name {
+        font-size: 4rem; /* lg:text-6xl */
+    }
+    .modal-section-title {
+        font-size: 2.25rem; /* lg:text-4xl */
+    }
+}
+
         opacity: 0.5;
     }
     html,
