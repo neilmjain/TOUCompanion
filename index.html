@@ -13,13 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="JavaScript" href="script.js">
 </head>
 <body class="p-6">
   <div class="container mx-auto p-6 rounded-lg shadow-lg">
     <div class="tab-nav">
       <nav>
-        <p style="font-size: 12px; margin-bottom: 5px;">Credit to Malkiz, Quarties & OrzechMC for all Role Logos and Font</p>
+        <p style="font-size: 12px; margin-bottom: 5px;">Credit to Malkiz, Quarties & OrzechMC for Font and Credit to Atony for all Role and Modifier Logos and ability images</p>
         <b></b>
         <a><button class="tab-button active" data-tab="wiki">Role Wiki</button></a>
         <a><button class="tab-button" data-tab="roles">Player Roles</button></a>
@@ -62,9 +61,9 @@
             </optgroup>
         </select>
       </div>
-      <div id="card-grid" class="card-grid">
-        <!-- Role cards will be rendered here by JavaScript -->
-      </div>
+      <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- Role cards will be injected here by JavaScript -->
+</div>
     </div>
 
     <!-- Player Roles Tab -->
@@ -131,6 +130,6 @@
     </div>
   </div>
 
- <script src="script.js"></script>
+ <script src="script.js" defer></script>
 </body>
 </html>
