@@ -63,6 +63,8 @@
 
     // Define unique colors for each individual role name, icon outline, and card outline
     // These colors are based on the C# snippet provided.
+    // Define unique colors for each individual role name, icon outline, and card outline
+    // All Impostor roles/modifiers will now use the same pure red color.
     const roleColors = {
         "Crewmate": rgbFloatToHex(0.00, 0.75, 1.00), // Palette.CrewmateRoleBlue / Palette.CrewmateBlue
         "Mayor": rgbFloatToHex(0.44, 0.31, 0.66),
@@ -92,10 +94,11 @@
         "Jailor": rgbFloatToHex(0.65, 0.65, 0.65),
         "Hunter": rgbFloatToHex(0.16, 0.67, 0.53),
         "Tracker": rgbFloatToHex(0.00, 0.60, 0.00),
-        "Lookout": rgbFloatToHex(0.20, 1.00, 0.40),
+        "Lookout": rgbFloat(0.20, 1.00, 0.40),
         "Deputy": rgbFloatToHex(1.00, 0.80, 0.00),
         "Plumber": rgbFloatToHex(0.80, 0.40, 0.00),
         "Cleric": rgbFloatToHex(0.00, 1.00, 0.70),
+
         "Neutral": rgbFloatToHex(0.50, 0.50, 0.50), // Color.gray - generic neutral, may be overridden by specific neutral role colors
         "Jester": rgbFloatToHex(1.00, 0.75, 0.80),
         "Executioner": rgbFloatToHex(0.39, 0.23, 0.12),
@@ -110,13 +113,30 @@
         "Werewolf": rgbFloatToHex(0.66, 0.40, 0.16),
         "Doomsayer": rgbFloatToHex(0.00, 1.00, 0.50),
         "Vampire": rgbFloatToHex(0.64, 0.16, 0.16),
-        "Soul Collector": rgbFloatToHex(0.60, 1.00, 0.80),
-        "Guardian Angel": rgbFloatToHex(0.70, 1.00, 1.00), // Matches Protector's color
+        "SoulCollector": rgbFloatToHex(0.60, 1.00, 0.80),
+        "GuardianAngel": rgbFloatToHex(0.70, 1.00, 1.00), // Matches Protector's color
         "Phantom": rgbFloatToHex(0.40, 0.16, 0.38),
         "Mercenary": rgbFloatToHex(0.55, 0.40, 0.60),
-        "Impostor": rgbFloatToHex(1.00, 0.00, 0.00), // Palette.ImpostorRed
-        "ImpSoft": rgbFloatToHex(0.84, 0.25, 0.26), // New from C#
-        "Inquisitor": rgbFloatToHex(0.85, 0.26, 0.57) // Updated from C#
+        "Inquisitor": rgbFloatToHex(0.85, 0.26, 0.57), // Updated from C#
+        
+        // All Impostor Roles will now be pure red
+        "Impostor": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "ImpSoft": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Eclipsal": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Escapist": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Grenadier": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Morphling": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Swooper": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Venerer": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Bomber": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Scavenger": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Traitor": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Warlock": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Blackmailer": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Hypnotist": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Janitor": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Miner": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Undertaker": rgbFloatToHex(1.00, 0.00, 0.00) 
     };
 
     // Modifiers (Converted from provided list)
@@ -148,11 +168,14 @@
         "Scientist": rgbFloatToHex(0.00, 0.78, 0.41),
         "Operative": rgbFloatToHex(0.60, 0.03, 0.07),
         "Scout": rgbFloatToHex(0.27, 0.38, 0.34),
-        "Disperser": rgbFloatToHex(1.00, 0.00, 0.00),
-        "Double Shot": rgbFloatToHex(1.00, 0.00, 0.00),
-        "Saboteur": rgbFloatToHex(1.00, 0.00, 0.00),
-        "Underdog": rgbFloatToHex(1.00, 0.00, 0.00),
-        "Telepath": rgbFloatToHex(1.00, 0.00, 0.00),
+        
+        // All Impostor Modifiers will now be pure red
+        "Disperser": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Double Shot": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Saboteur": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Underdog": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Telepath": rgbFloatToHex(1.00, 0.00, 0.00), 
+        "Spy Modifier": rgbFloatToHex(0.80, 0.64, 0.80) // Same as Spy role for consistency, not Impostor color
     };
 
     // Combined data for roles and modifiers - UPDATED TO USE BASE FILENAMES FOR ICONS
