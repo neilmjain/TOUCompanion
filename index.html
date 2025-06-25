@@ -89,37 +89,57 @@
     </div>
   </div>
 
-  <!-- Detail Modal for Role Wiki -->
-  <div id="detail-modal-overlay" class="modal-overlay">
-    <div id="detail-modal-content" class="modal-content">
-      <button id="modal-close-button" class="modal-close-button">&times;</button>
-      <div class="modal-header">
-        <img id="modal-icon" class="modal-icon" src="" alt="Entity Icon" onerror="this.onerror=null;this.src='placeholder.png';">
-        <div>
-          <h2 id="modal-name" class="modal-name"></h2>
-          <p id="modal-team" class="modal-team"></p>
-        </div>
-      </div>
-      <p id="modal-description" class="modal-description"></p>
+<!-- Detailed Role/Modifier Modal (Hidden by default, shown by JS) -->
 
-      <div class="flex flex-col md:flex-row gap-4">
-        <div class="flex-1">
-          <h3 class="modal-section-title">Abilities</h3>
-          <div id="modal-ability-item" class="modal-ability-item">
-            <img id="modal-ability-icon" class="modal-ability-icon" src="" alt="Ability Icon" onerror="this.onerror=null;this.src='placeholder.png';">
-            <span id="modal-ability-name"></span>
-          </div>
-        </div>
 
-        <div id="modal-settings-section" class="flex-1" style="display: none;">
-          <h3 class="modal-section-title settings">Settings</h3>
-          <div id="modal-settings-list"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="detail-modal-overlay" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div id="detail-modal-content" class="bg-gray-900 rounded-lg p-6 w-full max-w-4xl relative overflow-y-auto max-h-[90vh] border-4 border-transparent">
+          <button id="modal-close-button" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
 
-  <!-- Custom Message Box Container -->
+          <div class="modal-header-section flex flex-col items-center mb-6">
+                <img id="modal-icon" src="" alt="Role Icon" class="w-28 h-28 object-contain mb-4 transition-filter duration-300">
+                <h2 id="modal-name" class="text-4xl font-bold font-[Amatic_SC] text-center mb-1"></h2>
+                <p id="modal-team" class="text-lg font-semibold mb-2"></p>
+            </div>
+
+
+          <div class="modal-body-section px-2 md:px-4">
+                <p id="modal-description" class="text-gray-300 text-base leading-relaxed mb-6 border-l-4 pl-4"></p>
+<h2 id="modal-name" class="text-4xl md:text-5xl font-bold font-[Amatic_SC]"></h2>
+
+<h3 class="modal-section-title text-cyan-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC]">Abilities</h3>
+<div id="modal-ability-table-container" class="my-4 p-2 md:p-4 bg-gray-800 rounded-lg">
+    <table class="w-full text-left table-fixed">
+        <thead>
+            <tr class="border-b border-gray-700">
+                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Icon</th>
+                <th class="w-3/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Ability</th>
+            </tr>
+        </thead>
+        <tbody id="modal-ability-table-body">
+            </tbody>
+    </table>
+</div>
+
+
+<h3 id="modal-settings-section" class="modal-section-title text-yellow-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC]">Game Options</h3>
+<div id="modal-options-table-container" class="space-y-4 p-2 md:p-4 bg-gray-800 rounded-lg">
+    <table class="w-full text-left table-fixed">
+        <thead>
+            <tr class="border-b border-gray-700">
+                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-yellow-400">Option</th>
+                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-yellow-400">Default</th>
+                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-yellow-400">Type</th>
+                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-yellow-400">Range</th>
+            </tr>
+        </thead>
+        <tbody id="modal-options-table-body">
+            </tbody>
+    </table>
+</div>
+
+            </div>
+    <!-- Custom Message Box Container -->
   <div id="messageBoxOverlay" class="message-box-overlay">
     <div class="message-box">
         <p id="messageBoxText"></p>
