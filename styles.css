@@ -24,58 +24,47 @@
         100% { border-color:#ff00ff; } /* Neon Purple */
     }
 
-    /* Update .notepad-container style */
-    .container {
-        background-color: rgb(44, 44, 44, 0.3);
-        border-radius: 10px; /* Changed from 1rem to 10px for consistency with other border-radius values in this file */
-        padding: 40px; /* Adjusted from p-10/12/16 to a fixed value */
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 24px; /* Adjusted from gap-8 to a fixed value */
-        /* shadow-lg is a Tailwind class, keep it if you still want its effect, or replace with custom box-shadow */
-        /* For a stronger effect, you can remove shadow-lg and rely solely on the animation */
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Initial shadow, will be overridden by animation */
-        animation: colorChangeShadow 10s infinite alternate; /* Apply the animation */
-        opacity: 0.5;
-    }
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        background-color: #0d0d0d; /* Dark background as in original index.html */
-        font-family: 'Inter', sans-serif; /* Fallback for general text */
-        color: white;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start; /* Align content to top within flex container */
-        box-sizing: border-box;
-        line-height: 1.6;
-    }
-    .headers{
-        font-family: 'Amatic SC';
-        font-size: 70px;
-        font-weight: 300px;
-    }
-    .container {
-        width: 1800vw;
-        max-width: 2500px;
-        min-height: 90vh; /* Allow it to grow */
-        background-color: #1a1a1a; /* Slightly lighter dark for container */
-        border-radius: 1rem;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); /* Cyan glow from original */
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        margin-top: 2.5vh; /* Center vertically but allow scroll */
-        margin-bottom: 2.5vh;
-        opacity: inherit;
-    }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll from layout issues */
+    scroll-behavior: smooth;
+    background-color: #0d0d0d;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    min-height: 100vh;
+    /* REMOVED: display: flex; justify-content: center; align-items: flex-start; */
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+.headers {
+    font-family: 'Amatic SC';
+    font-size: 70px;
+    font-weight: 300px;
+}
+
+/* Corrected .container rule - consolidated and removed problematic width */
+/* Ensure your main container has a sensible max-width and margin auto for centering */
+.container {
+    width: 100%;
+    max-width: 1800px; /* Adjust this max-width if your content needs more space globally */
+    min-height: 90vh;
+    background-color: #1a1a1a;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    opacity: inherit; /* Keep this if you have opacity changes for the container */
+    /* Add margin: auto for horizontal centering if not already handled by Tailwind on a wrapper div */
+    margin-left: auto;
+    margin-right: auto;
+}
 
     /* Header */
     header {
@@ -523,22 +512,7 @@
         opacity: 1;
         visibility: visible;
     }
-    .modal-content {
-        background-color: #1f1f1f;
-        border-radius: 1rem;
-        padding: 2rem;
-        max-width: 800px; /* Slightly wider modal */
-        width: 90%;
-        max-height: 90%;
-        overflow-y: auto;
-        position: relative;
-        /* Box-shadow dynamically set by JS */
-        transform: scale(0.95);
-        transition: transform 0.3s ease-in-out;
-        /* Border dynamically set by JS */
-        scrollbar-width: thin; /* For Firefox */
-        scrollbar-color: var(--modal-scrollbar-thumb-color, cyan) var(--modal-scrollbar-track-color, #1f1f1f);
-    }
+
 .modal-content::-webkit-scrollbar {
     width: 10px;
 }
@@ -570,63 +544,7 @@
         color: #e53e3e; /* Red on hover */
         transform: rotate(90deg);
     }
-    .modal-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid #3b4553;
-        padding-bottom: 1rem;
-        gap: 1rem;
-    }
-    .modal-icon {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-  
     
-    }
-    .modal-icon.square {
-        border-radius: 0.75rem; /* Square for modifiers */
-    }
-    .modal-name {
-        font-family: 'Amatic SC', cursive;
-        font-weight: 700;
-        font-size: 3rem;
-        line-height: 1.1;
-        margin-bottom: 0.5rem;
-        color: white; /* Dynamic color */
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-    .modal-team {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.2rem;
-        color: cyan; /* Dynamic color */
-    }
-    .modal-description {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: white;
-        margin-bottom: 1.5rem;
-        background-color: #1f1f1f;
-        padding: 1rem;
-        border-left: 4px solid; /* Purple accent for description */
-        border-radius: 0.5rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-    .modal-section-title {
-        font-family: 'Amatic SC', cursive;
-        font-weight: 700;
-        font-size: 1.8rem;
-        color: cyan;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid #3b4553;
-        padding-bottom: 0.5rem;
-        text-align: center;
-        word-wrap: break-word;
-    }
     .modal-section-title.settings {
         color: yellow;
     }
@@ -659,54 +577,93 @@
         white-space: normal; /* Ensure text wraps */
     }
 
+/* NEW: Rules for the detail modal overlay visibility */
+#detail-modal-overlay {
+    display: none; /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* For smooth transitions */
+}
 
-    /* Custom Message Box - Simple style to match */
-    .message-box-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    }
-    .message-box-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    .message-box {
-        background-color: #1f1f1f;
-        border-radius: 0.5rem;
-        padding: 2rem;
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-        border: 2px solid cyan;
-    }
-    .message-box p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-        color: white;
-        font-family: 'Amatic SC', cursive;
-    }
-    .message-box-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-    }
-    .message-box .main-button { /* Use general button styles for message box */
-        font-size: 1.1rem;
-        padding: 0.6rem 1.2rem;
-        margin-top: 0; /* Remove extra margin */
-    }
+#detail-modal-overlay.active {
+    display: flex; /* Show when active */
+    opacity: 1;
+    visibility: visible;
+}
+.message-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
+.message-box-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.message-box {
+    background-color: #1f2937; /* bg-gray-800 equivalent */
+    color: #e5e7eb; /* text-gray-200 equivalent */
+    padding: 2rem;
+    border-radius: 0.5rem; /* rounded-lg equivalent */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message-box p {
+    font-size: 1.125rem; /* text-lg equivalent */
+    line-height: 1.5;
+}
+
+.message-box-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.message-box-buttons button {
+    cursor: pointer;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem; /* rounded-md equivalent */
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.message-box-buttons .main-button {
+    background-color: #10b981; /* bg-emerald-500 equivalent */
+    color: white;
+}
+
+.message-box-buttons .main-button:hover {
+    background-color: #059669; /* darker emerald */
+    transform: translateY(-1px);
+}
+
+.message-box-buttons .main-button.red {
+    background-color: #ef4444; /* bg-red-500 equivalent */
+}
+
+.message-box-buttons .main-button.red:hover {
+    background-color: #dc2626; /* darker red */
+}
     /* Responsive adjustments */
     @media (max-width: 768px) {
         body {
@@ -792,41 +749,6 @@
             font-size: 0.9rem;
             padding: 0.3rem 0.6rem;
         }
-        .main-button {
-            font-size: 1.2rem;
-            padding: 0.6rem 1.2rem;
-        }
-        .modal-content {
-            padding: 1.5rem;
-        }
-        .modal-header {
-            flex-direction: column;
-            text-align: center;
-            gap: 0.75rem;
-        }
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-        }
-        .modal-name {
-            font-size: 2.5rem;
-        }
-        .modal-team {
-            font-size: 1rem;
-        }
-        .modal-description {
-            font-size: 0.95rem;
-        }
-        .modal-section-title {
-            font-size: 1.5rem;
-        }
-        .modal-ability-item, .modal-setting-item {
-            font-size: 0.9rem;
-        }
-        .modal-ability-icon {
-            width: 28px;
-            height: 28px;
-        }
         .message-box p {
             font-size: 1rem;
         }
@@ -835,3 +757,46 @@
             padding: 0.5rem 1rem;
         }
     }
+#detail-modal-content::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar (if any) */
+}
+
+/* Track */
+#detail-modal-content::-webkit-scrollbar-track {
+    background: var(--modal-scrollbar-track-color, rgba(31, 31, 31, 0.5)); /* Default dark track, fallback */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+/* Handle (thumb) */
+#detail-modal-content::-webkit-scrollbar-thumb {
+    background: var(--modal-scrollbar-thumb-color, #7e22ce); /* Default purple thumb, fallback */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    transition: background 0.2s ease; /* Smooth transition on hover/color change */
+}
+
+/* Handle on hover */
+#detail-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--modal-scrollbar-thumb-color-hover, #6b1fbe); /* Slightly darker on hover */
+}
+#detail-modal-content{
+    max-height: 90vh;
+}
+th{
+     width: 25%;
+    padding-top: 0.5rem;   /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+    padding-left: 0.25rem;  /* px-1 */
+    padding-right: 0.25rem; /* px-1 */
+    font-size: 1.25rem;     /* text-xl */
+    font-weight: 700;       /* font-bold */
+    font-family: 'Amatic SC', cursive; /* font-[Amatic_SC] - added cursive as a fallback */
+    color: #FACC15; 
+    letter-spacing: 0.2vh;
+}
+h2{
+    font-size: 2.25rem;     /* text-4xl */
+    line-height: 2.5rem;    /* Default line-height for text-4xl */
+    font-weight: 700;       /* font-bold */
+    font-family: 'Amatic SC', cursive; /* font-[Amatic_SC] - with a generic fallback */
+}
