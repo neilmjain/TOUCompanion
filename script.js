@@ -94,7 +94,7 @@
         "Jailor": rgbFloatToHex(0.65, 0.65, 0.65),
         "Hunter": rgbFloatToHex(0.16, 0.67, 0.53),
         "Tracker": rgbFloatToHex(0.00, 0.60, 0.00),
-        "Lookout": rgbFloat(0.20, 1.00, 0.40),
+        "Lookout": rgbFloatToHex(0.20, 1.00, 0.40),
         "Deputy": rgbFloatToHex(1.00, 0.80, 0.00),
         "Plumber": rgbFloatToHex(0.80, 0.40, 0.00),
         "Cleric": rgbFloatToHex(0.00, 1.00, 0.70),
