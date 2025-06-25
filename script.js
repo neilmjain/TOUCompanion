@@ -160,7 +160,7 @@
         "Camouflaged": rgbFloatToHex(0.50, 0.50, 0.50), // New from C#
         "Satellite": rgbFloatToHex(0.00, 0.60, 0.80),
         "Egotist": rgbFloatToHex(0.40, 0.60, 0.40),
-        "Lover": rgbFloatToHex(1.00, 0.40, 0.80),
+        "Lovers": rgbFloatToHex(1.00, 0.40, 0.80),
         "Taskmaster": rgbFloatToHex(0.58, 0.84, 0.93),
         "Celebrity": rgbFloatToHex(1.00, 0.60, 0.60),
         "Immovable": rgbFloatToHex(0.90, 0.90, 0.80),
