@@ -113,8 +113,8 @@
         "Werewolf": rgbFloatToHex(0.66, 0.40, 0.16),
         "Doomsayer": rgbFloatToHex(0.00, 1.00, 0.50),
         "Vampire": rgbFloatToHex(0.64, 0.16, 0.16),
-        "SoulCollector": rgbFloatToHex(0.60, 1.00, 0.80),
-        "GuardianAngel": rgbFloatToHex(0.70, 1.00, 1.00), // Matches Protector's color
+        "Soul Collector": rgbFloatToHex(0.60, 1.00, 0.80),
+        "Guardian Angel": rgbFloatToHex(0.70, 1.00, 1.00), // Matches Protector's color
         "Phantom": rgbFloatToHex(0.40, 0.16, 0.38),
         "Mercenary": rgbFloatToHex(0.55, 0.40, 0.60),
         "Inquisitor": rgbFloatToHex(0.85, 0.26, 0.57), // Updated from C#
