@@ -1654,22 +1654,18 @@ function closeDetailModal() {
         };
 
         roleInput.addEventListener('input', () => {
-            updatePlayerRoleIconAndStyles();
+            updatePlayerRoleIconAndStyles(); 
             savePlayerRoles();
         });
 
         playerNameInput.addEventListener('input', savePlayerRoles);
 
-        removeBtn.addEventListener('click', async () => {
-            const confirmed = await showMessageBox(`Are you sure you want to remove ${playerNameInput.value || 'this player'}?`, true);
-            if (confirmed) {
-                playerEntryDiv.remove();
-                savePlayerRoles();
-                await showMessageBox('Player removed.');
-            } else {
-                await showMessageBox('Removal cancelled.');
-            }
-        });
+        if(removeBtn) {
+        removeBtn.addEventListener('click', () => {
+    playerEntryDiv.remove();
+    });
+    }
+    // Add remove button functionality
 
         updatePlayerRoleIconAndStyles(); // Call immediately on creation
         return playerEntryDiv;
@@ -1726,24 +1722,13 @@ function closeDetailModal() {
         });
     }
 
-    if (saveRolesBtn) {
-        saveRolesBtn.addEventListener('click', async () => {
-            savePlayerRoles();
-            await showMessageBox('Player roles saved locally!');
-        });
-    }
+    
 
-    if (clearRolesBtn) {
-        clearRolesBtn.addEventListener('click', async () => {
-            const confirmed = await showMessageBox('Are you sure you want to clear ALL player roles? This cannot be undone!', true);
-            if (confirmed) {
-                if (playerRolesList) playerRolesList.innerHTML = '';
-                localStorage.removeItem('amongUsCompanionRoles');
-                if (playerRolesList) playerRolesList.appendChild(createPlayerEntry());
-                await showMessageBox('Player roles cleared!');
-            }
-        });
-    }
+
+  // Clear Roles functionality
+  document.getElementById('clearRolesBtn').addEventListener('click', () => {
+    document.getElementById('playerRolesList').innerHTML = '';
+  });
 
     // --- General Notes Tab Logic ---
     function saveGeneralNotes() {
