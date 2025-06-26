@@ -491,7 +491,7 @@ const allEntitiesData = [
     {
         category: "Role", name: "Imitator", team: "Crewmate",
         description: "The Imitator is a Crewmate that can mimic dead crewamtes. During meetings the Imitator can select who they are going to imitate the following round from the dead. They can choose to use each dead players as many times as they wish.",
-        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.CrewButtons.ImitatorSelect.png', types: ["Utility", "Other"],
+        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.ImitatorSelect.png', types: ["Utility", "Other"],
         options: [
             { name: "Imitator", description: "The percentage probability of the Imitator appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Imitator Can Become Mayor", description: "Whether the Imitator can permanently become the Mayor", type: "Toggle", default: "True", range: "N/A" }
@@ -500,7 +500,7 @@ const allEntitiesData = [
     {
         category: "Role", name: "Mayor", team: "Crewmate",
         description: "Once per game the Mayor can reveal themselves as the Mayor mid-meeting, once done so they gain an additional 2 votes.",
-        ability: "Reveal as Mayor", icon: 'Mayor', skillIcon: 'TownOfUs.Resources.RevealClean.png', types: ["Utility"],
+        ability: "Reveal as Mayor", icon: 'Mayor', skillIcon: 'TownOfUs.Resources.Reveal.png', types: ["Utility"],
         options: [
             { name: "Mayor", description: "The percentage probability of the Mayor appearing", type: "Percentage", default: "0%", range: "N/A" }
             // Note: The previous "Votes" and "Button Cooldown" from earlier Mayor description are now gone as per this specific doc.
@@ -847,7 +847,7 @@ const allEntitiesData = [
         category: "Role", name: "Venerer", team: "Impostor",
         description: "The Venerer is an Impostor that gains abilities through killing. After their first kill, the Venerer can camouflage themself. After their second kill, the Venerer can sprint. After their third kill, every other player is slowed while their ability is activated. All abilities are activated by the one button and have the same duration.",
         ability: "Camouflage / Sprint / Freeze", icon: 'Venerer',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.CamoflageButton.png','TownOfUs.Resources.ImpButtons.CamoSprintButton.png','TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png'],
+        skillIcon: ['TownOfUs.Resources.ImpButtons.CamouflageButton.png','TownOfUs.Resources.ImpButtons.CamoSprintButton.png','TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png'],
         types: ["Sabotage", "Utility"],
         options: [
             { name: "Venerer", description: "The percentage probability of the Venerer appearing", type: "Percentage", "default": "0%", range: "N/A" },
