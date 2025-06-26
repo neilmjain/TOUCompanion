@@ -49,7 +49,7 @@ body {
 /* Ensure your main container has a sensible max-width and margin auto for centering */
 .container {
     width: 100%;
-    max-width: 1800px; /* Adjust this max-width if your content needs more space globally */
+    max-width: 3000px; /* Adjust this max-width if your content needs more space globally */
     min-height: 90vh;
     background-color: #1a1a1a;
     border-radius: 1rem;
@@ -512,6 +512,9 @@ body {
         opacity: 1;
         visibility: visible;
     }
+    .modal-header-section{
+        align-items: left;
+    }
 
 .modal-content::-webkit-scrollbar {
     width: 10px;
@@ -757,33 +760,48 @@ body {
             padding: 0.5rem 1rem;
         }
     }
-#detail-modal-content::-webkit-scrollbar {
-    width: 8px; /* Width of the vertical scrollbar */
-    height: 8px; /* Height of the horizontal scrollbar (if any) */
-}
-
-/* Track */
-#detail-modal-content::-webkit-scrollbar-track {
-    background: var(--modal-scrollbar-track-color, rgba(31, 31, 31, 0.5)); /* Default dark track, fallback */
-    border-radius: 10px; /* Rounded corners for the track */
-}
-
-/* Handle (thumb) */
-#detail-modal-content::-webkit-scrollbar-thumb {
-    background: var(--modal-scrollbar-thumb-color, #7e22ce); /* Default purple thumb, fallback */
-    border-radius: 10px; /* Rounded corners for the thumb */
-    transition: background 0.2s ease; /* Smooth transition on hover/color change */
-}
-
-/* Handle on hover */
-#detail-modal-content::-webkit-scrollbar-thumb:hover {
-    background: var(--modal-scrollbar-thumb-color-hover, #6b1fbe); /* Slightly darker on hover */
-}
-#detail-modal-content{
+#detail-modal-content {
+    /* Base styling from your Tailwind equivalent */
+    background-color: #1f1f1f;
+    border-radius: 1rem;
+    border-width: 2px;
+    border-color: #007bff;
+    padding: 1.25rem; /* Adjusted padding for comfortable cards */
+        /* Box-shadow dynamically set by JS */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    padding: 1.5rem;         /* Equivalent to p-6 */
+    width: 100%;
+    max-width: 960px;        /* Equivalent to max-w-4xl (960px for 4xl in Tailwind by default) */
+    position: relative;
+    overflow-y: auto;
     max-height: 90vh;
+    border: 2px solid transparent; /* Start with transparent border, color applied by JS */
+    filter: brightness(0.8); /* Slightly darken the overall modal to match card */
 }
+
+/* Add an active state for the overlay to ensure it's visible */
+#detail-modal-overlay.active {
+    display: flex; /* Or whatever makes it visible */
+}
+
+/* Scrollbar styling for the modal content */
+#detail-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#detail-modal-content::-webkit-scrollbar-track {
+    background: var(--modal-scrollbar-track-color, rgba(255, 255, 255, 0.1)); /* Fallback for track */
+    border-radius: 10px;
+}
+
+#detail-modal-content::-webkit-scrollbar-thumb {
+    background: var(--modal-scrollbar-thumb-color, #7e22ce); /* Fallback for thumb */
+    border-radius: 10px;
+}
+
 th{
-     width: 25%;
+    width: 25%;
     padding-top: 0.5rem;   /* py-2 */
     padding-bottom: 0.5rem; /* py-2 */
     padding-left: 0.25rem;  /* px-1 */
@@ -795,8 +813,15 @@ th{
     letter-spacing: 0.2vh;
 }
 h2{
-    font-size: 2.25rem;     /* text-4xl */
-    line-height: 2.5rem;    /* Default line-height for text-4xl */
+    font-size: 30px;     /* text-4xl */
+    line-height: 14rem;    /* Default line-height for text-4xl */
     font-weight: 700;       /* font-bold */
     font-family: 'Amatic SC', cursive; /* font-[Amatic_SC] - with a generic fallback */
+}
+h3{
+    width: 25%;
+    font-size: 1.25rem;     /* text-xl */
+    font-weight: 700;       /* font-bold */
+    font-family: 'Amatic SC', cursive; /* font-[Amatic_SC] - added cursive as a fallback */
+    letter-spacing: 0.15vh;
 }
