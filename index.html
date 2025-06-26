@@ -96,10 +96,16 @@
         <div id="detail-modal-content" class="bg-gray-900 rounded-lg p-6 w-full max-w-4xl relative overflow-y-auto max-h-[90vh] border-4 border-transparent">
           <button id="modal-close-button" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
 
-          <div class="modal-header-section flex flex-col items-center mb-6">
+          <div class="modal-header-section flex flex-row items-left mb-6">
                 <img id="modal-icon" src="" alt="Role Icon" class="w-28 h-28 object-contain mb-4 transition-filter duration-300">
-                <h2 id="modal-name" class="text-4xl font-bold font-[Amatic_SC] text-center mb-1"></h2>
+                <div class="modal-header-text flex-col ml-4">
+                  <br>
+                  <h2 id="modal-name" class="text-4xl font-bold font-[Amatic_SC] font-30vh mb-1 flex-col"></h2>
+                
+                <br>
                 <p id="modal-team" class="text-lg font-semibold mb-2"></p>
+                </div>
+                
             </div>
 
 
@@ -112,7 +118,7 @@
     <table class="w-full text-left table-fixed">
         <thead>
             <tr class="border-b border-gray-700">
-                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Icon</th>
+                <th class="w-1/4 py-2 px-1 md:px-2 text-x3 font-bold font-[Amatic_SC] text-cyan-400">Icon</th>
                 <th class="w-3/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Ability</th>
             </tr>
         </thead>
