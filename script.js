@@ -491,7 +491,7 @@ const allEntitiesData = [
     {
         category: "Role", name: "Imitator", team: "Crewmate",
         description: "The Imitator is a Crewmate that can mimic dead crewamtes. During meetings the Imitator can select who they are going to imitate the following round from the dead. They can choose to use each dead players as many times as they wish.",
-        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.ImitatorSelect.png', types: ["Utility", "Other"],
+        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.ImitateSelect.png', types: ["Utility", "Other"],
         options: [
             { name: "Imitator", description: "The percentage probability of the Imitator appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Imitator Can Become Mayor", description: "Whether the Imitator can permanently become the Mayor", type: "Toggle", default: "True", range: "N/A" }
