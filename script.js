@@ -1730,32 +1730,53 @@ function closeDetailModal() {
         }
     }
 
-    if (addPlayerBtn) {
-        addPlayerBtn.addEventListener('click', () => {
-            playerRolesList.appendChild(createPlayerEntry());
-            playerRolesList.lastElementChild.querySelector('.player-name-input')?.focus(); // Safe focus
-            savePlayerRoles();
-        });
-    }
+  // Add Player button functionality
+  addPlayerBtn.addEventListener("click", () => {
+    const playerDiv = document.createElement("div");
+    playerDiv.classList.add("player-entry", "p-4", "bg-gray-800", "rounded-lg");
 
-    if (saveRolesBtn) {
-        saveRolesBtn.addEventListener('click', async () => {
-            savePlayerRoles();
-            await showMessageBox('Player roles saved locally!');
-        });
-    }
+    playerDiv.innerHTML = `
+      <input type="text" placeholder="Player Name" class="player-name-input w-full mb-2 p-2 rounded bg-gray-700 text-white" />
+      <input type="text" placeholder="Guessed Role" class="player-role-input w-full p-2 rounded bg-gray-700 text-white" />
+    `;
 
-    if (clearRolesBtn) {
-        clearRolesBtn.addEventListener('click', async () => {
-            const confirmed = await showMessageBox('Are you sure you want to clear ALL player roles? This cannot be undone!', true);
-            if (confirmed) {
-                if (playerRolesList) playerRolesList.innerHTML = '';
-                localStorage.removeItem('amongUsCompanionRoles');
-                if (playerRolesList) playerRolesList.appendChild(createPlayerEntry());
-                await showMessageBox('Player roles cleared!');
-            }
-        });
-    }
+    playerRolesList.appendChild(playerDiv);
+  });
+
+  // Save Roles button functionality (example using localStorage)
+  saveRolesBtn.addEventListener("click", () => {
+    const roles = [];
+    document.querySelectorAll(".player-entry").forEach(entry => {
+      const name = entry.querySelector(".player-name-input").value;
+      const role = entry.querySelector(".player-role-input").value;
+      if (name || role) {
+        roles.push({ name, role });
+      }
+    });
+    localStorage.setItem("playerRoles", JSON.stringify(roles));
+    alert("Roles saved!");
+  });
+
+  // Clear Roles button functionality
+  clearRolesBtn.addEventListener("click", () => {
+    playerRolesList.innerHTML = "";
+    localStorage.removeItem("playerRoles");
+    alert("Roles cleared.");
+  });
+
+  // Optional: Load saved roles on page load
+  const saved = JSON.parse(localStorage.getItem("playerRoles") || "[]");
+  saved.forEach(({ name, role }) => {
+    const playerDiv = document.createElement("div");
+    playerDiv.classList.add("player-entry", "p-4", "bg-gray-800", "rounded-lg");
+
+    playerDiv.innerHTML = `
+      <input type="text" value="${name}" class="player-name-input w-full mb-2 p-2 rounded bg-gray-700 text-white" />
+      <input type="text" value="${role}" class="player-role-input w-full p-2 rounded bg-gray-700 text-white" />
+    `;
+
+    playerRolesList.appendChild(playerDiv);
+  });
 
     // --- General Notes Tab Logic ---
     function saveGeneralNotes() {
