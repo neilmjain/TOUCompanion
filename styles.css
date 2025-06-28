@@ -748,8 +748,6 @@ h3.modal-section-title {
 
 /* Specific styling for Ability Icons inside the table */
 #modal-ability-table-body img {
-    border-radius: 0.25rem; /* Slightly rounded corners for ability icons */
-    background-color: rgba(255, 255, 255, 0.03); /* Very subtle background for icon cell */
     padding: 0.1rem;
 }
 
