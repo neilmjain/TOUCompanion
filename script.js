@@ -1441,7 +1441,7 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
 
 
     // --- Abilities Section (using a table, handling multiple abilities) ---
-    modalAbilityTableBody.innerHTML = ''; // Clear previous content
+      modalAbilityTableBody.innerHTML = ''; // Clear previous content
     const abilities = entity.ability ? entity.ability.split(' / ').map(a => a.trim()) : [];
     const skillIcons = Array.isArray(entity.skillIcon) ? entity.skillIcon : (entity.skillIcon ? [entity.skillIcon] : []);
 
@@ -1452,7 +1452,7 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
             const row = document.createElement('tr');
             row.classList.add('border-b', 'border-gray-800');
 
-            // Icon Cell: Use specific icon if available, otherwise a placeholder
+            // Icon Cell
             const iconCell = document.createElement('td');
             iconCell.classList.add('py-2', 'px-1', 'md:px-2', 'align-top');
             const abilityIconImg = document.createElement('img');
@@ -1465,12 +1465,24 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
             iconCell.appendChild(abilityIconImg);
             row.appendChild(iconCell);
 
-            // Ability Name Cell: Apply Amatic SC font
+            // Ability Name Cell
             const nameCell = document.createElement('td');
-            nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top');
-            nameCell.classList.add('font-[Amatic_SC]'); // Apply Amatic SC font to ability names
+            nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top', 'font-[Amatic_SC]');
             nameCell.textContent = abilityText;
             row.appendChild(nameCell);
+
+            // NEW: Ability Description Cell
+            const descriptionCell = document.createElement('td');
+            descriptionCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-sm', 'text-gray-400', 'align-top');
+            // Placeholder: You'll need to link this to your actual descriptions.
+            // Example if you hardcode it: descriptionCell.textContent = "Description for " + abilityText;
+            // Example if you adopt the new array-of-objects structure for abilities:
+            // Assuming 'entity.abilities' is an array of objects like { name: "...", description: "..." }
+            const foundAbility = (Array.isArray(entity.abilities) ? entity.abilities : []).find(ab => ab.name === abilityText);
+            descriptionCell.textContent = foundAbility ? foundAbility.description : "No specific description provided.";
+            // If you intend to add descriptions to your 'ability' string, you'll need parsing logic here.
+            // For now, it will simply state "No specific description provided." unless you update your data structure.
+            row.appendChild(descriptionCell);
 
             modalAbilityTableBody.appendChild(row);
         });
