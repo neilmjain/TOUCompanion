@@ -1672,16 +1672,12 @@ function closeDetailModal() {
 
         playerNameInput.addEventListener('input', savePlayerRoles);
 
-        removeBtn.addEventListener('click', async () => {
-            const confirmed = await showMessageBox(`Are you sure you want to remove ${playerNameInput.value || 'this player'}?`, true);
-            if (confirmed) {
-                playerEntryDiv.remove();
-                savePlayerRoles();
-                await showMessageBox('Player removed.');
-            } else {
-                await showMessageBox('Removal cancelled.');
-            }
-        });
+       
+    document.querySelectorAll('.remove-player-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    button.closest('.player-entry').remove();
+  });
+});
 
         updatePlayerRoleIconAndStyles(); // Call immediately on creation
         return playerEntryDiv;
@@ -1706,41 +1702,10 @@ function closeDetailModal() {
     /**
      * Loads player role entries from localStorage and populates the list.
      */
-    function loadPlayerRoles() {
-        if (!playerRolesList) return; // Guard against missing element
-        playerRolesList.innerHTML = '';
-        const savedRoles = localStorage.getItem('amongUsCompanionRoles');
-        if (savedRoles) {
-            try {
-                const roles = JSON.parse(savedRoles);
-                if (roles.length > 0) {
-                    roles.forEach(player => {
-                        playerRolesList.appendChild(createPlayerEntry(player.playerName, player.role));
-                    });
-                } else {
-                    playerRolesList.appendChild(createPlayerEntry());
-                }
-            } catch (e) {
-                console.error("Error parsing saved roles:", e);
-                localStorage.removeItem('amongUsCompanionRoles');
-                playerRolesList.appendChild(createPlayerEntry());
-            }
-        } else {
-            playerRolesList.appendChild(createPlayerEntry());
-        }
-    }
 
   // Add Player button functionality
   addPlayerBtn.addEventListener("click", () => {
-    const playerDiv = document.createElement("div");
-    playerDiv.classList.add("player-entry", "p-4", "bg-gray-800", "rounded-lg");
-
-    playerDiv.innerHTML = `
-      <input type="text" placeholder="Player Name" class="player-name-input w-full mb-2 p-2 rounded bg-gray-700 text-white" />
-      <input type="text" placeholder="Guessed Role" class="player-role-input w-full p-2 rounded bg-gray-700 text-white" />
-    `;
-
-    playerRolesList.appendChild(playerDiv);
+    playerRolesList.appendChild(createPlayerEntry());
   });
 
   // Save Roles button functionality (example using localStorage)
@@ -1777,6 +1742,7 @@ function closeDetailModal() {
 
     playerRolesList.appendChild(playerDiv);
   });
+
 
     // --- General Notes Tab Logic ---
     function saveGeneralNotes() {
