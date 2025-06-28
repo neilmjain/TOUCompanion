@@ -641,8 +641,6 @@ background-color: #f0f0f0; /* Light gray */
 #modal-icon {
     /* Tailwind classes: w-24 h-24 object-contain flex-shrink-0 */
     /* Glow handled by JS via filter: drop-shadow */
-    background: rgba(255, 255, 255, 0.05); /* Very subtle background for icon */
-    border-radius: 0.5rem; /* Rounded corners for icon container */
     padding: 0.25rem;
 }
 
