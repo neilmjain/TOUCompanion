@@ -580,18 +580,200 @@ body {
         white-space: normal; /* Ensure text wraps */
     }
 
-/* NEW: Rules for the detail modal overlay visibility */
+/* styles.css */
+
+/* --- GENERAL MODAL OVERLAY & CONTENT STYLING --- */
+/* Ensure the modal overlay has a proper backdrop and fade effect */
 #detail-modal-overlay {
-    display: none; /* Hidden by default */
+    /* Tailwind classes: fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 */
+    /* Additions for smoother appearance and fallback blur */
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* For smooth transitions */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex; /* Ensure flex is active when 'active' class is added by JS */
+    backdrop-filter: blur(5px); /* Subtle blur effect on background content */
+    -webkit-backdrop-filter: blur(5px); /* For Safari support */
 }
 
 #detail-modal-overlay.active {
-    display: flex; /* Show when active */
     opacity: 1;
     visibility: visible;
+}
+
+/* Base styling for the modal content box */
+#detail-modal-content {
+    /* Tailwind classes: bg-gray-900 rounded-lg p-6 w-full max-w-4xl relative overflow-y-auto max-h-[90vh] border-4 border-transparent */
+    /* Additional styling for depth and theme */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Deeper shadow by default */
+background-color: #f0f0f0; /* Light gray */
+/* You might also want to change text colors if you go for a light background */
+    border-radius: 0.75rem; /* Slightly more rounded corners */
+    border-width: 2px; /* Ensure border is visible */
+    border-style: solid; /* Make sure border style is solid */
+    /* Transition for border color/shadow changes (set by JS) */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* Ensure scrollbar variables are accessible here */
+    --modal-scrollbar-track-color: rgba(31, 31, 31, 0.5); /* Default fallback */
+    --modal-scrollbar-thumb-color: #7e22ce; /* Default fallback */
+}
+
+
+/* --- MODAL CLOSE BUTTON --- */
+#modal-close-button {
+    /* Tailwind classes: absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1; /* Keep X centered */
+    border-radius: 50%; /* Make it round */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#modal-close-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
+    transform: scale(1.1);
+}
+
+
+/* Modal Icon (img#modal-icon) */
+#modal-icon {
+    /* Tailwind classes: w-24 h-24 object-contain flex-shrink-0 */
+    /* Glow handled by JS via filter: drop-shadow */
+    background: rgba(255, 255, 255, 0.05); /* Very subtle background for icon */
+    border-radius: 0.5rem; /* Rounded corners for icon container */
+    padding: 0.25rem;
+}
+
+/* Modal Name (h2#modal-name) */
+#modal-name {
+    /* Tailwind classes: text-4xl md:text-5xl font-bold font-[Amatic_SC] */
+    letter-spacing: 0.05em; /* Add a bit of spacing for readability */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Modal Team (p#modal-team) - for the dynamically styled span */
+.team-display-box {
+    padding: 0.25rem 0.75rem; /* Smaller padding for a more compact badge */
+    border-radius: 9999px; /* Fully rounded pill shape */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    display: inline-block; /* Ensure it's treated as a block for padding/margin */
+    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Slight shadow for text within box */
+}
+
+
+/* Modal Description (p#modal-description) */
+#modal-description {
+    /* Tailwind classes: text-gray-300 text-base leading-relaxed mb-6 border-l-4 pl-4 */
+    background-color: rgba(255, 255, 255, 0.05); /* Light background for description block */
+    padding: 1rem; /* More internal padding */
+    border-radius: 0.5rem; /* Rounded corners */    
+    color: #cbd5e1; /* Slightly lighter gray for text-gray-300 */
+    border-left-width: 4px; /* Ensure border is visible */
+    border-left-style: solid;
+    transition: border-left-color 0.3s ease;
+}
+
+/* Section Titles (h3.modal-section-title) */
+h3.modal-section-title {
+    /* Tailwind classes: text-cyan-400/text-yellow-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC] */
+    padding-bottom: 0.5rem; /* Space under the title */
+    border-bottom: 2px solid; /* Underline effect */
+    border-image: linear-gradient(to right, currentColor 50%, transparent 50%) 1; /* Gradient underline */
+    letter-spacing: 0.1em; /* More spacing for headings */
+    text-transform: uppercase; /* Make them all caps for emphasis */
+}
+
+
+/* --- TABLES WITHIN MODAL (Abilities & Options) --- */
+/* Table Containers */
+#modal-ability-table-container,
+#modal-options-table-container {
+    /* Tailwind classes: my-4 p-2 md:p-4 bg-gray-800 rounded-lg */
+    background-color: #1f2937; /* Consistent darker background for table containers */
+    border-radius: 0.75rem;
+    overflow: hidden; /* Ensures rounded corners cut off table content */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
+}
+
+/* Table Headers (th) */
+#detail-modal-content th { /* Target only th inside the modal */
+    /* Original values based on your last provided styles.css */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700;   /* font-bold */
+    font-family: 'Amatic SC', cursive; /* font-[Amatic_SC] */
+    letter-spacing: 0.1em; /* Consistent with other headings */
+    text-transform: uppercase;
+    background-color: #2a3547; /* Slightly lighter background for table headers */
+    border-bottom: 1px solid #4a5568; /* Stronger border under headers */
+}
+
+/* Responsive padding for headers */
+@media (min-width: 768px) { /* Tailwind's 'md' breakpoint */
+    #detail-modal-content th {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Table Rows (tr) */
+#detail-modal-content tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+#detail-modal-content tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08); /* Light hover effect for rows */
+}
+
+/* Table Cells (td) */
+#detail-modal-content td { /* Target only td inside the modal */
+    padding-top: 0.75rem; /* More padding */
+    padding-bottom: 0.75rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    border-color: #374151; /* Darker border color */
+    vertical-align: middle; /* Center content vertically in cell */
+}
+@media (min-width: 768px) { /* Responsive padding for cells */
+    #detail-modal-content td {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Specific styling for Ability Icons inside the table */
+#modal-ability-table-body img {
+    border-radius: 0.25rem; /* Slightly rounded corners for ability icons */
+    background-color: rgba(255, 255, 255, 0.03); /* Very subtle background for icon cell */
+    padding: 0.1rem;
+}
+
+/* --- CUSTOM SCROLLBAR STYLES FOR MODAL CONTENT --- */
+#detail-modal-content::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar (if any) */
+}
+
+#detail-modal-content::-webkit-scrollbar-track {
+    background: var(--modal-scrollbar-track-color, rgba(31, 31, 31, 0.5)); /* Dynamically set by JS, fallback to dark */
+    border-radius: 10px;
+}
+
+#detail-modal-content::-webkit-scrollbar-thumb {
+    background: var(--modal-scrollbar-thumb-color, #7e22ce); /* Dynamically set by JS, fallback to purple */
+    border-radius: 10px;
+    transition: background 0.2s ease; /* Smooth transition on hover/color change */
+}
+
+#detail-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--modal-scrollbar-thumb-color-hover, #6b1fbe); /* Slightly darker on hover */
 }
 .message-box-overlay {
     position: fixed;
