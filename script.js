@@ -187,8 +187,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Aurial", team: "Crewmate",
         description: "The Aurial is a Crewmate that can sense when players use an ability nearby. If any player near the Aurial uses a button ability, the Aurial will get an arrow pointing towards where that ability was used.",
-        ability: "Sense Interactions", icon: 'Aurial',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Aurial.png'],
+        abilities: [{ name: "Sense Interactions", icon: 'TownOfUs.Resources.RoleIcons.Aurial.png', description: "Senses when players use an ability nearby." }],
+        icon: 'Aurial',
         types: ["Detection", "Other"],
         options: [
             { name: "Aurial", description: "The percentage probability of the Aurial appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -200,9 +200,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Detective", team: "Crewmate",
         description: "The Detective has a 2 step ability.\nThe first stage involves inspecting a crime scene. Once a crime scene is inspected they can then examine other players on cooldown to see if that player was at the scene of the crime.\nCrime scenes spawn at each dead body. They also get a detective report telling them the type of killer if they examine someone’s body.",
-        ability: "Inspect / Examine",
+        abilities: [
+            { name: "Inspect", icon: 'TownOfUs.Resources.CrewButtons.InspectButton.png', description: "Inspects a crime scene to gather clues." },
+            { name: "Examine", icon: 'TownOfUs.Resources.CrewButtons.ExamineButton.png', description: "Examines players to check their presence at a crime scene." }
+        ],
         icon: 'Detective',
-        skillIcon: ['TownOfUs.Resources.CrewButtons.InspectButton.png', 'TownOfUs.Resources.CrewButtons.ExamineButton.png'],
         types: ["Detection"],
         options: [
             { name: "Detective", description: "The percentage probability of the Detective appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -215,9 +217,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Engineer", team: "Crewmate",
         description: "The Engineer is a Crewmate that can fix sabotages from anywhere on the map.\nThey can use vents to get across the map easily.",
-        ability: "Vent / Fix Sabotage",
+        abilities: [
+            { name: "Vent", icon: 'TownOfUs.Resources.CrewButtons.EngiVentButton.png', description: "Uses vents for quick movement." },
+            { name: "Fix Sabotage", icon: 'TownOfUs.Resources.CrewButtons.FixButton.png', description: "Fixes sabotages from any location." }
+        ],
         icon: 'Engineer',
-        skillIcon: ['TownOfUs.Resources.CrewButtons.EngiVentButton.png', 'TownOfUs.Resources.CrewButtons.FixButton.png'],
         types: ["Utility", "Movement"],
         options: [
             { name: "Engineer", description: "The percentage probability of the Engineer appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -227,9 +231,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Medic", team: "Crewmate",
         description: "The Medic is a Crewmate that can give any player a shield that will make them immortal until the Medic dies.\nA Shielded player cannot be killed by anyone, unless by suicide.\nIf the Medic reports a dead body, they can get a report containing clues to the Killer's identity.\nA report can contain the color type (Darker/Lighter) of the killer if the body is not too old.",
-        ability: "Shield",
+        abilities: [{ name: "Shield", icon: 'TownOfUs.Resources.CrewButtons.MedicButton.png', description: "Provides a shield to a player, making them immortal." }],
         icon: 'Medic',
-        skillIcon: ['TownOfUs.Resources.CrewButtons.MedicButton.png'], // Keep specific shield button icon
         types: ["Protective", "Support"],
         options: [
             { name: "Medic", description: "The percentage probability of the Medic appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -243,8 +246,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Sheriff", team: "Crewmate",
         description: "The Sheriff is a Crewmate that has the ability to eliminate the Impostors using their kill button.\nHowever, if they kill a Crewmate or a Neutral player they can't kill, they instead die themselves.",
-        ability: "Shoot", icon: 'Sheriff',
-        skillIcon: ['TownOfUs.Resources.CrewButtons.SheriffShootButton.png'],
+        abilities: [{ name: "Shoot", icon: 'TownOfUs.Resources.CrewButtons.SheriffShootButton.png', description: "Eliminates Impostors. Miskilling results in self-elimination." }],
+        icon: 'Sheriff',
         types: ["Killing"],
         options: [
             { name: "Sheriff", description: "The percentage probability of the Sheriff appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -258,8 +261,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Snitch", team: "Crewmate",
         description: "The Snitch is a \nCrewmate that can get arrows pointing towards the Impostors, once all their tasks are finished.\nThe names of the Impostors will also show up as red on their screen.\nHowever, when they only have a single task left, the Impostors get an arrow pointing towards the Snitch.",
-        ability: "Reveal Imps", icon: 'Snitch',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Snitch.png'],
+        abilities: [{ name: "Reveal Imps", icon: 'TownOfUs.Resources.RoleIcons.Snitch.png', description: "Reveals Impostor locations after tasks are completed." }],
+        icon: 'Snitch',
         types: ["Information"],
         options: [
             { name: "Snitch", description: "The percentage probability of the Snitch appearing", type: "Percentage", default: "0%", range: "N/A" },
@@ -272,8 +275,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Swapper", team: "Crewmate",
         description: "The Swapper is a Crewmate that can swap the votes on 2 players during a meeting.\nAll the votes for the first player will instead be counted towards the second player and vice versa.",
-        ability: "Swap Players", icon: 'Swapper',
-        skillIcon: ['TownOfUs.Resources.SwapActive.png'], // Changed to array
+        abilities: [{ name: "Swap Players", icon: 'TownOfUs.Resources.SwapActive.png', description: "Swaps votes between two players during a meeting." }],
+        icon: 'Swapper',
         types: ["Support", "Utility"],
         options: [
             { name: "Swapper", description: "The percentage probability of the Swapper appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -283,8 +286,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Transporter", team: "Crewmate",
         description: "The Transporter is a Crewmate that can change the locations of two random players at will.\nPlayers who have been transported are alerted with a blue flash on their screen.",
-        ability: "Transport", icon: 'Transporter',
-        skillIcon: ['TownOfUs.Resources.CrewButtons.TransportButton.png'],
+        abilities: [{ name: "Transport", icon: 'TownOfUs.Resources.CrewButtons.TransportButton.png', description: "Changes the locations of two random players." }],
+        icon: 'Transporter',
         types: ["Utility"],
         options: [
             { name: "Transporter", description: "The percentage probability of the Transporter appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -296,7 +299,9 @@ const allEntitiesData = [
      {
         category: "Role", name: "Haunter", team: "Crewmate",
         description: "Once a random Crewmate dies they become the Haunter. The Haunter has the ability to run around as a ghost and to do tasks. Once all tasks are finished they reveal the Impostors to all alive non-Impostors. However, if the Haunter is clicked they lose their ability to reveal Impostors and are once again a normal ghost. The Impostors also get a warning shortly before and as the Haunter finishes their tasks.",
-        ability: "Reveal Imps", icon: 'Haunter', skillIcon: 'TownOfUs.Resources.RoleIcons.Haunter.png', types: ["Detection", "Utility", "Other"],
+        abilities: [{ name: "Reveal Imps", icon: 'TownOfUs.Resources.RoleIcons.Haunter.png', description: "Reveals Impostors to all non-Impostors after tasks are finished." }],
+        icon: 'Haunter',
+        types: ["Detection", "Utility", "Other"],
         options: [
             { name: "Haunter", description: "The percentage probability of the Haunter appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "When Haunter Can Be Clicked", description: "The amount of tasks remaining when the Haunter Can Be Clicked", type: "Number", default: "5", range: "N/A" },
@@ -308,7 +313,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Investigator", team: "Crewmate",
         description: "The Investigator can see player's footprints throughout the game. Swooper footprints are hidden.",
-        ability: "View Footprints", icon: 'Investigator', skillIcon: 'TownOfUs.Resources.Footprint.png', types: ["Detection"],
+        abilities: [{ name: "View Footprints", icon: 'TownOfUs.Resources.Footprint.png', description: "Can see players' footprints throughout the game." }],
+        icon: 'Investigator',
+        types: ["Detection"],
         options: [
             { name: "Investigator", description: "The percentage probability of the Investigator appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Footprint Size", description: "Changes how big footprints are.", type: "Multiplier", default: "4x", range: "1x - 10x" },
@@ -321,7 +328,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Lookout", team: "Crewmate",
         description: "The Lookout is a Crewmate that can watch other players during rounds. During meetings they will see all roles who interact with each watched player.",
-        ability: "Watch Player", icon: 'Lookout', skillIcon: 'TownOfUs.Resources.CrewButtons.WatchButton.png', types: ["Detection"],
+        abilities: [{ name: "Watch Player", icon: 'TownOfUs.Resources.CrewButtons.WatchButton.png', description: "Watches other players during rounds to see who interacts with them." }],
+        icon: 'Lookout',
+        types: ["Detection"],
         options: [
             { name: "Lookout", description: "The percentage probability of the Lookout appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Watch Cooldown", description: "The cooldown on the Lookout's Watch button", type: "Time", default: "10s", range: "N/A" },
@@ -332,7 +341,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Mystic", team: "Crewmate",
         description: "The Mystic is a Crewmate that gets an alert revealing when someone has died. On top of this, the Mystic briefly gets an arrow pointing in the direction of the body.",
-        ability: "Know Kills", icon: 'Mystic', skillIcon: 'TownOfUs.Resources.RoleIcons.Mystic.png', types: ["Detection", "Other"],
+        abilities: [{ name: "Know Kills", icon: 'TownOfUs.Resources.RoleIcons.Mystic.png', description: "Receives alerts when someone dies and sees an arrow to the body." }],
+        icon: 'Mystic',
+        types: ["Detection", "Other"],
         options: [
             { name: "Mystic", description: "The percentage probability of the Mystic appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Arrow Duration", description: "The duration of the arrows pointing to the bodies", type: "Time", default: "0.1s", range: "N/A" }
@@ -341,7 +352,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Seer", team: "Crewmate",
         description: "The Seer is a Crewmate that can reveal the alliance of other players. Based on settings, the Seer can find out whether a player is a Good or an Evil role. A player's name will change color depending on faction and role.",
-        ability: "Reveal Alliance", icon: 'Seer', skillIcon: 'TownOfUs.Resources.CrewButtons.SeerButton.png', types: ["Detection"],
+        abilities: [{ name: "Reveal Alliance", icon: 'TownOfUs.Resources.CrewButtons.SeerButton.png', description: "Reveals the alliance (Good/Evil) of other players." }],
+        icon: 'Seer',
+        types: ["Detection"],
         options: [
             { name: "Seer", description: "The percentage probability of the Seer appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Seer Cooldown", description: "The Cooldown of the Seer's Reveal button", type: "Time", default: "25s", range: "N/A" },
@@ -355,7 +368,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Spy", team: "Crewmate",
         description: "The Spy is a Crewmate Investigative role that gains extra information on the admin table. Not only does the Spy see how many people are in a room, but they will also see who is in every room. The Spy also has a toggle for a portable Admin Table with a limited battery charge.",
-        ability: "View Admin", icon: 'Spy', skillIcon: 'TownOfUs.Resources.AdminButton.png', types: ["Detection", "Utility"],
+        abilities: [{ name: "View Admin", icon: 'TownOfUs.Resources.AdminButton.png', description: "Views detailed information on the admin table, including who is in each room." }],
+        icon: 'Spy',
+        types: ["Detection", "Utility"],
         options: [
             { name: "Spy", description: "The percentage probability of the Spy appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Who Sees Dead Bodies On Admin", description: "Which players see dead bodies on the admin map", type: "Nobody / Spy / Everyone But Spy / Everyone", default: "Nobody", range: "N/A" }
@@ -364,7 +379,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Tracker", team: "Crewmate",
         description: "The Tracker is a Crewmate that can track other players by tracking them during a round. Once they track someone, an arrow is continuously pointing to them, which updates in set intervals.",
-        ability: "Track Player", icon: 'Tracker', skillIcon: 'TownOfUs.Resources.CrewButtons.TrackButton.png', types: ["Detection"],
+        abilities: [{ name: "Track Player", icon: 'TownOfUs.Resources.CrewButtons.TrackButton.png', description: "Continuously tracks a player with a persistent arrow." }],
+        icon: 'Tracker',
+        types: ["Detection"],
         options: [
             { name: "Tracker", description: "The percentage probability of the Tracker appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Arrow Update Interval", description: "The time it takes for the arrow to update to the new location of the tracked player", type: "Time", default: "5s", range: "N/A" },
@@ -376,7 +393,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Trapper", team: "Crewmate",
         description: "The Trapper is a Crewmate that can place traps around the map. When players enter a trap they trigger the trap. In the following meeting, all players who triggered a trap will have their role displayed to the Trapper. However, this is done so in a random order, not stating who entered the trap, nor what role a specific player is.",
-        ability: "Place Trap", icon: 'Trapper', skillIcon: 'TownOfUs.Resources.CrewButtons.TrapButton.png', types: ["Detection", "Utility"],
+        abilities: [{ name: "Place Trap", icon: 'TownOfUs.Resources.CrewButtons.TrapButton.png', description: "Places traps that reveal roles of players who trigger them." }],
+        icon: 'Trapper',
+        types: ["Detection", "Utility"],
         options: [
             { name: "Trapper", description: "The percentage probability of the Trapper appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Min Amount of Time in Trap to Register", description: "How long a player must stay in the trap for it to trigger", type: "Time", default: "1s", range: "0s - 10s" },
@@ -390,7 +409,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Deputy", team: "Crewmate",
         description: "The Deputy is a Crewmate that can camp other players. Camped players will alert the Deputy when they are killed. The following meeting the Deputy then can attempt to shoot their killer. If they successfully shoot the killer, they will die, otherwise nothing happens.",
-        ability: "Camp / Shoot", icon: 'Deputy', skillIcon: ['TownOfUs.Resources.CrewButtons.CampButton.png','TownOfUs.Resources.Shoot.png'], types: ["Kill", "Detection"],
+        abilities: [
+            { name: "Camp", icon: 'TownOfUs.Resources.CrewButtons.CampButton.png', description: "Camps players to be alerted if they are killed." },
+            { name: "Shoot", icon: 'TownOfUs.Resources.Shoot.png', description: "Attempts to shoot a killer in the following meeting." }
+        ],
+        icon: 'Deputy',
+        types: ["Kill", "Detection"],
         options: [
             { name: "Deputy", description: "The percentage probability of the Deputy appearing", type: "Percentage", default: "0%", range: "N/A" }
         ]
@@ -398,7 +422,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Hunter", team: "Crewmate",
         description: "The Hunter is a Crewmate Killing role with the ability to track players and execute them if they do anything suspicious. Unlike the Sheriff, the Hunter does not die if they kill an innocent player, however the Hunter may only execute players who have given them probable cause.",
-        ability: "Stalk / Kill", icon: 'Hunter', skillIcon: ['TownOfUs.Resources.CrewButtons.StalkButton.png','TownOfUs.Resources.CrewButtons.HunterKillButton.png' ], types: ["Kill", "Detection"],
+        abilities: [
+            { name: "Stalk", icon: 'TownOfUs.Resources.CrewButtons.StalkButton.png', description: "Stalks players to find suspicious activity." },
+            { name: "Kill", icon: 'TownOfUs.Resources.CrewButtons.HunterKillButton.png', description: "Executes players who have given probable cause." }
+        ],
+        icon: 'Hunter',
+        types: ["Kill", "Detection"],
         options: [
             { name: "Hunter", description: "The percentage probability of the Hunter appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Hunter Kill Cooldown", description: "The cooldown of the Hunter's Kill button", type: "Number", default: "25s", range: "N/A" },
@@ -412,7 +441,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Jailor", team: "Crewmate",
         description: "The Jailor is a Crewmate that can jail Crewmates. During meetings all players can see when a Crewmate is jailed. When someone is jailed they cannot use any meeting ability and no meeting ability can be used on them. The Jailor may privately communicate with the jailee. If the Jailor then thinks the jailee is bad, they may then execute them. If the Jailor executes incorrectly, they lose the ability to jail.",
-        ability: "Jail / Execute", icon: 'Jailor', skillIcon: ['TownOfUs.Resources.CrewButtons.JailButton.png','TownOfUs.Resources.ExecuteClean.png'], types: ["Kill", "Utility"],
+        abilities: [
+            { name: "Jail", icon: 'TownOfUs.Resources.CrewButtons.JailButton.png', description: "Jails Crewmates, preventing them from using meeting abilities." },
+            { name: "Execute", icon: 'TownOfUs.Resources.ExecuteClean.png', description: "Executes jailed players if deemed suspicious." }
+        ],
+        icon: 'Jailor',
+        types: ["Kill", "Utility"],
         options: [
             { name: "Jailor", description: "The percentage probability of the Jailor appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Jail Cooldown", description: "The cooldown on the Jailor's jail button", type: "Time", default: "10s", range: "N/A" },
@@ -422,7 +456,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Veteran", team: "Crewmate",
         description: "The Veteran is a Crewmate that can go on alert. When the Veteran is on alert, anyone, whether Crew, Neutral or Impostor, if they interact with the Veteran, they die.",
-        ability: "Toggle Alert", icon: 'Veteran', skillIcon: 'TownOfUs.Resources.CrewButtons.AlertButton.png', types: ["Kill", "Support"],
+        abilities: [{ name: "Toggle Alert", icon: 'TownOfUs.Resources.CrewButtons.AlertButton.png', description: "Goes on alert, killing anyone who interacts with them." }],
+        icon: 'Veteran',
+        types: ["Kill", "Support"],
         options: [
             { name: "Veteran", description: "The percentage probability of the Veteran appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Can Be Killed On Alert", description: "Whether the Veteran dies when someone tries to kill them when they're on alert", type: "Toggle", default: "False", range: "N/A" },
@@ -434,7 +470,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Vigilante", team: "Crewmate",
         description: "The Vigilante is a Crewmate that can kill during meetings. During meetings, the Vigilante can choose to kill someone by guessing their role, however, if they guess incorrectly, they die instead.",
-        ability: "Guess Role", icon: 'Vigilante', skillIcon: 'TownOfUs.Resources.Guess.png', types: ["Kill"],
+        abilities: [{ name: "Guess Role", icon: 'TownOfUs.Resources.Guess.png', description: "Kills a player during meetings by guessing their role. Miskill results in self-elimination." }],
+        icon: 'Vigilante',
+        types: ["Kill"],
         options: [
             { name: "Vigilante", description: "The percentage probability of the Vigilante appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Vigilante Kill", description: "The number of kill the Vigilante can do with his ability", type: "Number", default: "1", range: "N/A" },
@@ -449,7 +487,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Altruist", team: "Crewmate",
         description: "The Altruist is a Crewmate that is capable of reviving dead players. The Altruist may attempt to revive all dead players from that round. When reviving the Altruist may not move and all killers will be pointed towards the Altruist. After a set period of time, all dead player's bodies within the Altruist's range will be resurrected, if the revival isn't interrupted. Once a revival is used, the Altruist, along with all revived players will not be able to button for the remainder of the game.",
-        ability: "Revive", icon: 'Altruist', skillIcon: 'TownOfUs.Resources.CrewButtons.ReviveButton.png', types: ["Support"],
+        abilities: [{ name: "Revive", icon: 'TownOfUs.Resources.CrewButtons.ReviveButton.png', description: "Revives dead players within a certain radius." }],
+        icon: 'Altruist',
+        types: ["Support"],
         options: [
             { name: "Altruist", description: "The percentage probability of the Altruist appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Revive Duration", description: "The time it takes for the Altruist to revive all dead bodies", type: "Time", default: "5s", range: "N/A" },
@@ -460,7 +500,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Cleric", team: "Crewmate",
         description: "The Cleric is a Crewmate that can barrier or cleanse other players. When a player is barriered they cannot be killed for a set duration. When a player is cleansed all negative effects are removed, however, not all effects are removed instantly, some are instead removed at the beginning of the following meeting.",
-        ability: "Barrier / Cleanse", icon: 'Cleric', skillIcon: ['TownOfUs.Resources.CrewButtons.BarrierButton.png','TownOfUs.Resources.CrewButtons.CleanseButton.png'], types: ["Support"],
+        abilities: [
+            { name: "Barrier", icon: 'TownOfUs.Resources.CrewButtons.BarrierButton.png', description: "Barriers players, making them immune to kills for a duration." },
+            { name: "Cleanse", icon: 'TownOfUs.Resources.CrewButtons.CleanseButton.png', description: "Removes negative effects from players." }
+        ],
+        icon: 'Cleric',
+        types: ["Support"],
         options: [
             { name: "Cleric", description: "The percentage probability of the Cleric appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Barrier Cooldown", description: "The cooldown of the Cleric's Barrier and Cleanse buttons", type: "Time", default: "25s", range: "N/A" },
@@ -471,7 +516,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Oracle", team: "Crewmate",
         description: "The Oracle is a Crewmate that can get another player to confess information to them. The Oracle has 2 abilities. The first, confess, makes a player confess saying that one of two players is good and will reveal their alignment when the Oracle dies. The second, bless, makes someone immune to dying during a meeting.",
-        ability: "Confess / Bless", icon: 'Oracle', skillIcon: ['TownOfUs.Resources.CrewButtons.ConfessButton.png', 'TownOfUs.Resources.CrewButtons.BlessButton.png'], types: ["Detection", "Support"],
+        abilities: [
+            { name: "Confess", icon: 'TownOfUs.Resources.CrewButtons.ConfessButton.png', description: "Makes a player confess information, revealing alignments upon Oracle's death." },
+            { name: "Bless", icon: 'TownOfUs.Resources.CrewButtons.BlessButton.png', description: "Grants immunity from dying during a meeting." }
+        ],
+        icon: 'Oracle',
+        types: ["Detection", "Support"],
         options: [
             { name: "Oracle", description: "The percentage probability of the Oracle appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Confess Cooldown", description: "The Cooldown of the Oracle's Confess button", type: "Time", default: "10s", range: "N/A" },
@@ -482,7 +532,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Warden", team: "Crewmate",
         description: "The Warden is a Crewmate that can fortify other players. Fortified players cannot be interacted with. If someone tries to interact with or assassinate a fortified player, Both the Warden and the interactor receive an alert.",
-        ability: "Fortify Player", icon: 'Warden', skillIcon: 'TownOfUs.Resources.CrewButtons.FortifyButton.png', types: ["Support"],
+        abilities: [{ name: "Fortify Player", icon: 'TownOfUs.Resources.CrewButtons.FortifyButton.png', description: "Fortifies players, making them immune to interactions and assassinations." }],
+        icon: 'Warden',
+        types: ["Support"],
         options: [
             { name: "Warden", description: "The percentage probability of the Warden appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Show Fortified Player", description: "Who should be able to see who is Fortified", type: "Self / Warden / Self + Warden", default: "Warden", range: "N/A" }
@@ -491,7 +543,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Imitator", team: "Crewmate",
         description: "The Imitator is a Crewmate that can mimic dead crewamtes. During meetings the Imitator can select who they are going to imitate the following round from the dead. They can choose to use each dead players as many times as they wish.",
-        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.ImitateSelect.png', types: ["Utility", "Other"],
+        abilities: [{ name: "Imitate Role", icon: 'TownOfUs.Resources.CrewButtons.ImitatorSelect.png', description: "Mimics dead crewmates' roles during meetings." }],
+        icon: 'Imitator',
+        types: ["Utility", "Other"],
         options: [
             { name: "Imitator", description: "The percentage probability of the Imitator appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Imitator Can Become Mayor", description: "Whether the Imitator can permanently become the Mayor", type: "Toggle", default: "True", range: "N/A" }
@@ -500,16 +554,19 @@ const allEntitiesData = [
     {
         category: "Role", name: "Mayor", team: "Crewmate",
         description: "Once per game the Mayor can reveal themselves as the Mayor mid-meeting, once done so they gain an additional 2 votes.",
-        ability: "Reveal as Mayor", icon: 'Mayor', skillIcon: 'TownOfUs.Resources.Reveal.png', types: ["Utility"],
+        abilities: [{ name: "Reveal as Mayor", icon: 'TownOfUs.Resources.RevealClean.png', description: "Reveals self as Mayor to gain additional votes." }],
+        icon: 'Mayor',
+        types: ["Utility"],
         options: [
             { name: "Mayor", description: "The percentage probability of the Mayor appearing", type: "Percentage", default: "0%", range: "N/A" }
-            // Note: The previous "Votes" and "Button Cooldown" from earlier Mayor description are now gone as per this specific doc.
         ]
     },
     {
         category: "Role", name: "Medium", team: "Crewmate",
         description: "The Medium is a Crewmate that can see ghosts. During each round the Medium has an ability called Mediate. If the Medium uses this ability and no one is dead, nothing will happen. However, if someone is dead, the Medium and the dead player will be able to see each other and communicate from beyond the grave!",
-        ability: "Mediate", icon: 'Medium', skillIcon: 'TownOfUs.Resources.CrewButtons.MediateButton.png', types: ["Utility", "Detection"],
+        abilities: [{ name: "Mediate", icon: 'TownOfUs.Resources.CrewButtons.MediateButton.png', description: "Communicates with dead players." }],
+        icon: 'Medium',
+        types: ["Utility", "Detection"],
         options: [
             { name: "Medium", description: "The percentage probability of the Medium appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Mediate Cooldown", description: "The cooldown of the Medium's Mediate button", type: "Time", default: "10s", range: "N/A" },
@@ -521,7 +578,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Plumber", team: "Crewmate",
         description: "The Plumber is a Crewmate that maintains vent systems. The Plumber can either flush vents, ejecting all players currently in vents, or block a vent, placing a barricade on the vent preventing it's use.",
-        ability: "Flush / Barricade", icon: 'Plumber', skillIcon: ['TownOfUs.Resources.CrewButtons.FlushButton.png', 'TownOfUs.Resources.CrewButtons.BarricadeButton.png'], types: ["Utility", "Sabotage"],
+        abilities: [
+            { name: "Flush", icon: 'TownOfUs.Resources.CrewButtons.FlushButton.png', description: "Ejects all players from vents." },
+            { name: "Barricade", icon: 'TownOfUs.Resources.CrewButtons.BarricadeButton.png', description: "Blocks a vent with a barricade." }
+        ],
+        icon: 'Plumber',
+        types: ["Utility", "Sabotage"],
         options: [
             { name: "Plumber", description: "The percentage probability of the Plumber appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Flush Cooldown", description: "The cooldown of the Plumber's Flush and Block buttons", type: "Time", default: "25s", range: "N/A" },
@@ -531,7 +593,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Politician", team: "Crewmate",
         description: "The Politician is a Crewmate that can campaign to other players. Once half or more of the Crewmates are campaigned to, the Politician can reveal themselves as the new Mayor. If less then half of the Crewmates have been campaigned to the reveal will fail and the Politician will be unable to campaign for 1 round.",
-        ability: "Campaign to Reveal", icon: 'Politician', skillIcon: 'TownOfUs.Resources.CrewButtons.CampaignButton.png', types: ["Utility"],
+        abilities: [{ name: "Campaign to Reveal", icon: 'TownOfUs.Resources.CrewButtons.CampaignButton.png', description: "Campaigns to other players to reveal as Mayor." }],
+        icon: 'Politician',
+        types: ["Utility"],
         options: [
             { name: "Politician", description: "The percentage probability of the Politician appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Campaign Cooldown", description: "The cooldown of the Politician's Campaign button", type: "Time", default: "25s", range: "N/A" }
@@ -540,7 +604,9 @@ const allEntitiesData = [
     {
         category: "Role", name: "Prosecutor", team: "Crewmate",
         description: "The Prosecutor has 2 abilities, one is the ability for them to see all the votes (non-anonymous voting), the other, once per game during a meeting the Prosecutor can prosecute someone, making all other votes redundant and having whoever the Prosecutor selected exiled that meeting.",
-        ability: "Prosecute", icon: 'Prosecutor', skillIcon: 'TownOfUs.Resources.RoleIcons.Prosecutor.png', types: ["Utility", "Detection"],
+        abilities: [{ name: "Prosecute", icon: 'TownOfUs.Resources.RoleIcons.Prosecutor.png', description: "Can see all votes and can exile someone once per game." }],
+        icon: 'Prosecutor',
+        types: ["Utility", "Detection"],
         options: [
             { name: "Prosecutor", description: "The percentage probability of the Prosecutor appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Prosecutor Dies When They Exile A Crewmate", description: "Whether the Prosecutor also gets exiled when they exile a Crewmate", type: "Toggle", default: "False", range: "N/A" }
@@ -550,8 +616,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Amnesiac", team: "Neutral",
         description: "The Amnesiac is a Neutral role with no win condition.\nThey have zero tasks and are essentially roleless. However, they can remember a role by finding a dead player.\nOnce they remember their role, they go on to try win with their new win condition.",
-        ability: "Remember Role", icon: 'Amnesiac',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.RememberButton.png'],
+        abilities: [{ name: "Remember Role", icon: 'TownOfUs.Resources.NeutButtons.RememberButton.png', description: "Remembers a role by finding a dead player." }],
+        icon: 'Amnesiac',
         types: ["Information"],
         options: [
             { name: "Amnesiac", description: "The percentage probability of the Amnesiac appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -562,8 +628,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Guardian Angel", team: "Neutral",
         description: "The Guardian Angel is a Neutral role which aligns with the faction of their target.\nTheir job is to protect their target at all costs.\nIf their target loses, they lose.",
-        ability: "Protect Target", icon: 'GuardianAngel',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.ProtectButton.png'],
+        abilities: [{ name: "Protect Target", icon: 'TownOfUs.Resources.NeutButtons.ProtectButton.png', description: "Protects their target from being killed." }],
+        icon: 'GuardianAngel',
         types: ["Protective"],
         options: [
             { name: "Guardian Angel", description: "The percentage probability of the Guardian Angel appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -580,8 +646,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Mercenary", team: "Neutral",
         description: "The Mercenary is a Neutral role which can guard other players.\nGuarded players absorb abilities and convert it into currency. This currency can be used to bribe other players.\nIf a bribed player lives and goes onto win the game, the Mercenary does too.\nThe Mercenary does not need to survive themselves. They cannot win with Neutral Evils or Lovers.",
-        ability: "Bribe / Guard", icon: 'Mercenary',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.BribeButton.png', 'TownOfUs.Resources.NeutButtons.GuardButton.png'],
+        abilities: [
+            { name: "Bribe", icon: 'TownOfUs.Resources.NeutButtons.BribeButton.png', description: "Uses currency to bribe other players." },
+            { name: "Guard", icon: 'TownOfUs.Resources.NeutButtons.GuardButton.png', description: "Guards players, converting absorbed abilities into currency." }
+        ],
+        icon: 'Mercenary',
         types: ["Utility", "Support"],
         options: [
             { name: "Mercenary", description: "The percentage probability of the Mercenary appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -593,8 +662,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Survivor", team: "Neutral",
         description: "The Survivor is a Neutral role which can win by simply surviving.\nHowever, if Lovers, or a Neutral Evil role wins the game, the Survivor loses.",
-        ability: "Safeguard", icon: 'Survivor',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.VestButton.png'],
+        abilities: [{ name: "Safeguard", icon: 'TownOfUs.Resources.NeutButtons.VestButton.png', description: "Activates a vest to protect against kills." }],
+        icon: 'Survivor',
         types: ["Protective"],
         options: [
             { name: "Survivor", description: "The percentage probability of the Survivor appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -608,8 +677,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Doomsayer", team: "Neutral",
         description: "The Doomsayer is a Neutral role with its own win condition.\nTheir goal is to assassinate 3 players to win. If there are only 2 other people alive, the Doomsayer only needs to assassinate the remainder of the players.\nThey have an additional observe ability that hints towards certain player's roles.",
-        ability: "Observe / Guess", icon: 'Doomsayer',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.ObserveButton.png', 'TownOfUs.Resources.Guess.png'],
+        abilities: [
+            { name: "Observe", icon: 'TownOfUs.Resources.NeutButtons.ObserveButton.png', description: "Observes players to gain hints about their roles." },
+            { name: "Guess", icon: 'TownOfUs.Resources.Guess.png', description: "Assassinate players by guessing their role." }
+        ],
+        icon: 'Doomsayer',
         types: ["Killing", "Information"],
         options: [
             { name: "Doomsayer", description: "The percentage probability of the Doomsayer appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -622,8 +694,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Executioner", team: "Neutral",
         description: "The Executioner is a Neutral role with its own win condition.\nTheir goal is to vote out a player, specified in the beginning of a game.\nIf that player gets voted out, they win the game.",
-        ability: "No Active Ability", icon: 'Executioner',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Executioner.png'],
+        abilities: [], // No active ability as per description
+        icon: 'Executioner',
         types: ["Chaos", "Killing"],
         options: [
             { name: "Executioner", description: "The percentage probability of the Executioner appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -635,8 +707,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Jester", team: "Neutral",
         description: "The Jester is a Neutral role with its own win condition.\nIf they are voted out after a meeting, the game finishes and they win.\nHowever, the Jester does not win if the Crewmates, Impostors or another Neutral role wins.",
-        ability: "No Active Ability", icon: 'Jester',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Jester.png'],
+        abilities: [], // No active ability as per description
+        icon: 'Jester',
         types: ["Chaos", "Killing"],
         options: [
             { name: "Jester", description: "The percentage probability of the Jester appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -651,8 +723,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Phantom", team: "Neutral",
         description: "The Phantom \nis a Neutral role with its own win condition. They become half-invisible when they die and has to complete all their tasks without getting caught.",
-        ability: "Finish Tasks To Win", icon: 'Phantom',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Phantom.png'],
+        abilities: [{ name: "Finish Tasks To Win", icon: 'TownOfUs.Resources.RoleIcons.Phantom.png', description: "Completes tasks to win the game while half-invisible after death." }],
+        icon: 'Phantom',
         types: ["Stealth", "Utility"],
         options: [
             { name: "Phantom", description: "The percentage probability of the Phantom appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -663,8 +735,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Inquisitor", team: "Neutral",
         description: "The Inquisitor is a Neutral Evil role that wins if their targets (Heretics) die.\nThe only information provided is their roles, and it\'s up to the Inquisitor to identify those players (marked with a dark pink-ish $ to the dead) and get them killed by any means neccesary.",
-        ability: "Inquire / Vanquish", icon: 'Inquisitor',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.InquireButton.png','TownOfUs.Resources.NeutButtons.InquisKillButton.png'],
+        abilities: [
+            { name: "Inquire", icon: 'TownOfUs.Resources.NeutButtons.InquireButton.png', description: "Inquires to identify targets (Heretics)." },
+            { name: "Vanquish", icon: 'TownOfUs.Resources.NeutButtons.InquisKillButton.png', description: "Eliminates identified targets." }
+        ],
+        icon: 'Inquisitor',
         types: ["Killing", "Information"],
         options: [
             { name: "Inquisitor", description: "The percentage probability of the Inquisitor appearing", type: "Percentage", "default": "0%", range: "N/A" }
@@ -673,8 +748,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Soul Collector", team: "Neutral",
         description: "The Soul Collector is a Neutral role with its own win condition.\nThe Soul Collector kills be reaping players, reaped players do not leave behind a dead body, instead they leave a soul.\nThe Soul Collector needs to be the last killer alive to win the game.",
-        ability: "Reap", icon: 'SoulCollector',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.ReapButton.png',],
+        abilities: [{ name: "Reap", icon: 'TownOfUs.Resources.NeutButtons.ReapButton.png', description: "Reaps players, leaving behind a soul instead of a body." }],
+        icon: 'SoulCollector',
         types: ["Killing", "Utility"],
         options: [
             { name: "Soul Collector", description: "The percentage probability of the Soul Collector appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -685,8 +760,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Arsonist", team: "Neutral",
         description: "The Arsonist is a Neutral role with its own win condition.\nThey have two abilities, one is to douse other players with gasoline.\nThe other is to ignite all doused players near them.\nThe Arsonist needs to be the last killer alive to win the game.",
-        ability: "Douse / Ignite", icon: 'Arsonist',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.DouseButton.png', 'TownOfUs.Resources.NeutButtons.IgniteButton.png'],
+        abilities: [
+            { name: "Douse", icon: 'TownOfUs.Resources.NeutButtons.DouseButton.png', description: "Douses players with gasoline." },
+            { name: "Ignite", icon: 'TownOfUs.Resources.NeutButtons.IgniteButton.png', description: "Ignites all doused players nearby." }
+        ],
+        icon: 'Arsonist',
         types: ["Killing"],
         options: [
             { name: "Arsonist", description: "The percentage probability of the Arsonist appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -698,8 +776,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Juggernaut", team: "Neutral",
         description: "The Juggernaut is a Neutral role \nwith its own win condition. The Juggernaut\'s special ability is that their kill cooldown reduces with each kill.\nThis means in theory the Juggernaut can have a 0 second kill cooldown!\nThe Juggernaut needs to be the last killer alive to win the game.",
-        ability: "Kill", icon: 'Juggernaut',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.JuggKillButton.png'],
+        abilities: [{ name: "Kill", icon: 'TownOfUs.Resources.NeutButtons.JuggKillButton.png', description: "Kills with a cooldown that reduces with each kill." }],
+        icon: 'Juggernaut',
         types: ["Killing"],
         options: [
             { name: "Juggernaut", description: "The percentage probability of the Juggernaut appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -711,8 +789,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Plaguebearer", team: "Neutral",
         description: "The Plaguebearer is a Neutral role with its own win condition, as well as an ability to transform into another role.\nThe Plaguebearer has one ability, which allows them to infect other players.\nOnce infected, the infected player can go and infect other players via interacting with them.\nOnce all players are infected, the Plaguebearer becomes Pestilence. The Pestilence is a unkillable force which can only be killed by being voted out, even their lover dying won't kill them.\nThe Plaguebearer or Pestilence needs to be the last killer alive to win the game.",
-        ability: "Infect", icon: 'Plaguebearer',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.InfectButton.png'],
+        abilities: [{ name: "Infect", icon: 'TownOfUs.Resources.NeutButtons.InfectButton.png', description: "Infects other players, spreading the plague." }],
+        icon: 'Plaguebearer',
         types: ["Converting", "Killing"],
         options: [
             { name: "Plaguebearer", description: "The percentage probability of the Plaguebearer appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -724,8 +802,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Pestilence", team: "Neutral",
         description: "The Pestilence is a \nNeutral role with its own win condition. They can only be killed by being voted out, even their lover dying won't kill them.",
-        ability: "Kill", icon: 'Pestilence',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.PestKillButton.png'],
+        abilities: [{ name: "Kill", icon: 'TownOfUs.Resources.NeutButtons.PestKillButton.png', description: "Kills players, cannot be killed except by voting." }],
+        icon: 'Pestilence',
         types: ["Killing", "Defense"],
         options: [
             { name: "Pestilence", description: "The percentage probability of the Pestilence appearing", type: "Percentage", "default": "0%", range: "N/A" }
@@ -734,8 +812,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Glitch", team: "Neutral",
         description: "The Glitch is a Neutral role with its own win condition.\nThe Glitch's aim is to kill everyone and be the last person standing.\nThe Glitch can Hack players, resulting in them being unable to report bodies and use abilities.\nHacking prevents the hacked player from doing anything but walk around the map.\nThe Glitch can Mimic someone, which results in them looking exactly like the other person.",
-        ability: "Kill / Hack / Mimic", icon: 'Glitch',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.GlitchKillButton.png', 'TownOfUs.Resources.NeutButtons.HackButton.png', 'TownOfUs.Resources.NeutButtons.MimicButton.png'],
+        abilities: [
+            { name: "Kill", icon: 'TownOfUs.Resources.NeutButtons.GlitchKillButton.png', description: "Eliminates other players." },
+            { name: "Hack", icon: 'TownOfUs.Resources.NeutButtons.HackButton.png', description: "Disables players' ability to report or use abilities." },
+            { name: "Mimic", icon: 'TownOfUs.Resources.NeutButtons.MimicButton.png', description: "Mimics another player's appearance." }
+        ],
+        icon: 'Glitch',
         types: ["Killing", "Sabotage", "Deception"],
         options: [
             { name: "The Glitch", description: "The percentage probability of The Glitch appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -750,8 +832,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Vampire", team: "Neutral",
         description: "The Vampire is a Neutral role with its own \nwin condition. The Vampire can convert or kill other players by biting them.\nIf the bitten player was a Crewmate they will turn into a Vampire (unless there are 2 Vampires alive) Else they will kill the bitten player.",
-        ability: "Bite", icon: 'Vampire',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.BiteButton.png'],
+        abilities: [{ name: "Bite", icon: 'TownOfUs.Resources.NeutButtons.BiteButton.png', description: "Converts or kills players by biting them." }],
+        icon: 'Vampire',
         types: ["Converting", "Killing"],
         options: [
             { name: "Vampire", description: "The percentage probability of the Vampire appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -767,8 +849,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Werewolf", team: "Neutral",
         description: "The Werewolf is a Neutral role with its own win condition.\nAlthough the Werewolf has a kill button, they can't use it unless they are Rampaged.\nOnce the Werewolf rampages they gain Impostor vision and the ability to kill.\nHowever, unlike most killers their kill cooldown is really short.\nThe Werewolf needs to be the last killer alive to win the game.",
-        ability: "Rampage / Kill", icon: 'Werewolf',
-        skillIcon: ['TownOfUs.Resources.NeutButtons.RampageButton.png', 'TownOfUs.Resources.NeutButtons.WolfKillButton.png'],
+        abilities: [
+            { name: "Rampage", icon: 'TownOfUs.Resources.NeutButtons.RampageButton.png', description: "Activates rampage mode, gaining Impostor vision and kill ability." },
+            { name: "Kill", icon: 'TownOfUs.Resources.NeutButtons.WolfKillButton.png', description: "Kills with a short cooldown while rampaging." }
+        ],
+        icon: 'Werewolf',
         types: ["Killing", "Movement"],
         options: [
             { name: "Werewolf", description: "The percentage probability of the Werewolf appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -781,8 +866,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Eclipsal", team: "Impostor",
         description: "The Eclipsal is an Impostor that can blind other players.\nBlinded players have no vision and their report buttons do not light up (but can still be used).",
-        ability: "Blind", icon: 'Eclipsal',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.BlindButton.png'],
+        abilities: [{ name: "Blind", icon: 'TownOfUs.Resources.ImpButtons.BlindButton.png', description: "Blinds other players, removing their vision." }],
+        icon: 'Eclipsal',
         types: ["Sabotage"],
         options: [
             { name: "Eclipsal", description: "The percentage probability of the Eclipsal appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -794,8 +879,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Escapist", team: "Impostor",
         description: "The Escapist is an \nImpostor that can teleport to a different location. Once per round the Escapist can Mark a location which they can then escape to later in the round.",
-        ability: "Teleport", icon: 'Escapist',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.RecallButton.png'],
+        abilities: [{ name: "Teleport", icon: 'TownOfUs.Resources.ImpButtons.RecallButton.png', description: "Marks a location and teleports back to it." }],
+        icon: 'Escapist',
         types: ["Movement"],
         options: [
             { name: "Escapist", description: "The percentage probability of the Escapist appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -806,8 +891,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Grenadier", team: "Impostor",
         description: "The Grenadier is an Impostor that can throw smoke grenades. During the game, the Grenadier has the option to throw down a smoke grenade which blinds Crewmates so they can't see. However, a sabotage and a smoke grenade can not be active at the same time.",
-        ability: "Flashbang", icon: 'Grenadier',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.FlashButton.png'],
+        abilities: [{ name: "Flashbang", icon: 'TownOfUs.Resources.ImpButtons.FlashButton.png', description: "Throws smoke grenades to blind Crewmates." }],
+        icon: 'Grenadier',
         types: ["Kill"],
         options: [
             { name: "Grenadier", description: "The percentage probability of the Grenadier appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -820,8 +905,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Morphling", team: "Impostor",
         description: "The Morphling is an Impostor that can Morph into another player. At the beginning of the game and after every meeting, they can choose someone to Sample. They can then Morph into that person at any time for a limited amount of time.",
-        ability: "Sample / Morph", icon: 'Morphling',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.SampleButton.png','TownOfUs.Resources.ImpButtons.MorphButton.png'],
+        abilities: [
+            { name: "Sample", icon: 'TownOfUs.Resources.ImpButtons.SampleButton.png', description: "Samples a player to morph into them later." },
+            { name: "Morph", icon: 'TownOfUs.Resources.ImpButtons.MorphButton.png', description: "Temporarily morphs into a sampled player." }
+        ],
+        icon: 'Morphling',
         types: ["Utility", "Sabotage"],
         options: [
             { name: "Morphling", description: "The percentage probability of the Morphling appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -833,8 +921,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Swooper", team: "Impostor",
         description: "The Swooper is an Impostor that can temporarily turn invisible.",
-        ability: "Turn Invisible", icon: 'Swooper',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.SwoopButton.png'],
+        abilities: [{ name: "Turn Invisible", icon: 'TownOfUs.Resources.ImpButtons.SwoopButton.png', description: "Temporarily turns invisible." }],
+        icon: 'Swooper',
         types: ["Utility"],
         options: [
             { name: "Swooper", description: "The percentage probability of the Swooper appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -846,8 +934,12 @@ const allEntitiesData = [
     {
         category: "Role", name: "Venerer", team: "Impostor",
         description: "The Venerer is an Impostor that gains abilities through killing. After their first kill, the Venerer can camouflage themself. After their second kill, the Venerer can sprint. After their third kill, every other player is slowed while their ability is activated. All abilities are activated by the one button and have the same duration.",
-        ability: "Camouflage / Sprint / Freeze", icon: 'Venerer',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.CamouflageButton.png','TownOfUs.Resources.ImpButtons.CamoSprintButton.png','TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png'],
+        abilities: [
+            { name: "Camouflage", icon: 'TownOfUs.Resources.ImpButtons.CamoflageButton.png', description: "Camouflages self after first kill." },
+            { name: "Sprint", icon: 'TownOfUs.Resources.ImpButtons.CamoSprintButton.png', description: "Sprints after second kill." },
+            { name: "Freeze", icon: 'TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png', description: "Slows other players after third kill." }
+        ],
+        icon: 'Venerer',
         types: ["Sabotage", "Utility"],
         options: [
             { name: "Venerer", description: "The percentage probability of the Venerer appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -861,8 +953,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Bomber", team: "Impostor",
         description: "The Bomber is an Impostor who has the ability to plant bombs instead of kill. After a bomb is planted, the bomb will detonate a fixed time period as per settings. Once the bomb detonates it will kill all Crewmates (and Impostors!) inside the radius.",
-        ability: "Plant Bomb", icon: 'Bomber',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.DetonatingButton.png'],
+        abilities: [{ name: "Plant Bomb", icon: 'TownOfUs.Resources.ImpButtons.DetonatingButton.png', description: "Plants bombs that detonate and kill players within a radius." }],
+        icon: 'Bomber',
         types: ["Kill", "Sabotage"],
         options: [
             { name: "Bomber", description: "The percentage probability of the Bomber appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -876,8 +968,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Scavenger", team: "Impostor",
         description: "The Scavenger is an Impostor who hunts down prey. With each successful hunt the Scavenger has a shortened kill cooldown. On an incorrect kill the Scavenger has a significantly increased kill cooldown.",
-        ability: "Kill", icon: 'Scavenger',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Scavenger.png'],
+        abilities: [{ name: "Kill", icon: 'TownOfUs.Resources.RoleIcons.Scavenger.png', description: "Kills with a cooldown shortened on successful hunts, increased on incorrect ones." }],
+        icon: 'Scavenger',
         types: ["Utility", "Sabotage"],
         options: [
             { name: "Scavenger", description: "The percentage probability of the Scavenger appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -890,8 +982,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Traitor", team: "Impostor",
         description: "If all Impostors die before a certain point in the game, a random Crewmate is selected to become the Traitor. The Traitor has no additional abilities and their job is simply to avenge the dead Impostors. Once this player has turned into the Traitor their alliance sits with the Impostors. The Traitor is offered a choice of up to 3 Impostor roles when they initially change roles.",
-        ability: "Select a Role", icon: 'Traitor',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.TraitorSelect.png'],
+        abilities: [{ name: "Select a Role", icon: 'TownOfUs.Resources.ImpButtons.TraitorSelect.png', description: "Selects an Impostor role to take on if all Impostors die." }],
+        icon: 'Traitor',
         types: ["Other"],
         options: [
             { name: "Traitor", description: "The percentage probability of the Traitor appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -902,8 +994,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Warlock", team: "Impostor",
         description: "The Warlock is an Impostor that can charge up their kill button. Once activated the Warlock can use their kill button infinitely until they run out of charge. However, they do not need to fully charge their kill button to use it.",
-        ability: "Charge Kill", icon: 'Warlock',
-        skillIcon: ['TownOfUs.Resources.RoleIcons.Warlock.png'],
+        abilities: [{ name: "Charge Kill", icon: 'TownOfUs.Resources.RoleIcons.Warlock.png', description: "Charges kill button for infinite kills until charge runs out." }],
+        icon: 'Warlock',
         types: ["Sabotage"],
         options: [
             { name: "Warlock", description: "The percentage probability of the Warlock appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -914,8 +1006,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Blackmailer", team: "Impostor",
         description: "The Blackmailer is an Impostor that can silence people in meetings. During each round, the Blackmailer can go up to someone and blackmail them. This prevents the blackmailed person from speaking and possibly voting during the next meeting.",
-        ability: "Blackmail", icon: 'Blackmailer',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.BlackmailButton.png'],
+        abilities: [{ name: "Blackmail", icon: 'TownOfUs.Resources.ImpButtons.BlackmailButton.png', description: "Silences people in meetings, preventing them from speaking and voting." }],
+        icon: 'Blackmailer',
         types: ["Sabotage"],
         options: [
             { name: "Blackmailer", description: "The percentage probability of the Blackmailer appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -927,8 +1019,11 @@ const allEntitiesData = [
     {
         category: "Role", name: "Hypnotist", team: "Impostor",
         description: "The Hypnotist is an Impostor that can hypnotize people. Once enough people are hypnotized, the Hypnotist can release Mass Hysteria. With Mass Hysteria released, all hypnotized players see all other players as either themselves, camouflaged or invisible. Once the Hypnotist dies Mass Hysteria is removed and people can see everyone normally again.",
-        ability: "Hypnotize / Mass Hysteria", icon: 'Hypnotist',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.HypnotiseButton.png', 'TownOfUs.Resources.HysteriaClean.png'],
+        abilities: [
+            { name: "Hypnotize", icon: 'TownOfUs.Resources.ImpButtons.HypnotiseButton.png', description: "Hypnotizes people to prepare for Mass Hysteria." },
+            { name: "Mass Hysteria", icon: 'TownOfUs.Resources.HysteriaClean.png', description: "Releases Mass Hysteria, altering hypnotized players' vision." }
+        ],
+        icon: 'Hypnotist',
         types: ["Sabotage"],
         options: [
             { name: "Hypnotist", description: "The percentage probability of the Hypnotist appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -938,8 +1033,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Janitor", team: "Impostor",
         description: "The Janitor is an Impostor that can clean up bodies. Both their Kill and Clean ability have a shared cooldown, meaning they have to choose which one they want to use.",
-        ability: "Clean Body", icon: 'Janitor',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.CleanButton.png'],
+        abilities: [{ name: "Clean Body", icon: 'TownOfUs.Resources.ImpButtons.CleanButton.png', description: "Cleans up bodies." }],
+        icon: 'Janitor',
         types: ["Utility"],
         options: [
             { name: "Janitor", description: "The percentage probability of the Janitor appearing", type: "Percentage", "default": "0%", range: "N/A" }
@@ -948,8 +1043,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Miner", team: "Impostor",
         description: "The Miner is an Impostor that can create new vents. These vents only connect to each other, forming a new passway.",
-        ability: "Place Vent", icon: 'Miner',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.MineButton.png'],
+        abilities: [{ name: "Place Vent", icon: 'TownOfUs.Resources.ImpButtons.MineButton.png', description: "Creates new interconnected vents." }],
+        icon: 'Miner',
         types: ["Utility"],
         options: [
             { name: "Miner", description: "The percentage probability of the Miner appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -959,8 +1054,8 @@ const allEntitiesData = [
     {
         category: "Role", name: "Undertaker", team: "Impostor",
         description: "The Undertaker is an Impostor that can drag and drop bodies.",
-        ability: "Drag Body", icon: 'Undertaker',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.DragButton.png'],
+        abilities: [{ name: "Drag Body", icon: 'TownOfUs.Resources.ImpButtons.DragButton.png', description: "Drags and drops bodies." }],
+        icon: 'Undertaker',
         types: ["Utility"],
         options: [
             { name: "Undertaker", description: "The percentage probability of the Undertaker appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -974,7 +1069,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Aftermath", team: "Crewmate Modifier",
         description: "Killing the Aftermath forces their killer to use their ability (if they have one and it's not in use).",
-        ability: "Force your Killer to Use Ability", icon: 'Aftermath', skillIcon: ['TownOfUs.Resources.ModifierIcons.AfterMath.png'], types: ["Passive", "Death Trigger"],
+        abilities: [{ name: "Force your Killer to Use Ability", icon: 'TownOfUs.Resources.ModifierIcons.AfterMath.png', description: "Forces killer to use their ability upon death." }],
+        icon: 'Aftermath',
+        types: ["Passive", "Death Trigger"],
         options: [
             { name: "Aftermath", description: "The percentage probability of the Aftermath appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -982,7 +1079,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Bait", team: "Crewmate Modifier",
         description: "Killing the Bait makes the killer auto self-report.",
-        ability: "Forces Your Killer to Report ", icon: 'Bait', skillIcon: ['TownOfUs.Resources.ModifierIcons.Bait.png'], types: ["Passive", "Death Trigger"],
+        abilities: [{ name: "Forces Your Killer to Report", icon: 'TownOfUs.Resources.ModifierIcons.Bait.png', description: "Forces killer to auto self-report upon death." }],
+        icon: 'Bait',
+        types: ["Passive", "Death Trigger"],
         options: [
             { name: "Bait", description: "The percentage probability of the Bait appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Bait Minimum Delay", description: "The minimum time the killer of the Bait reports the body", type: "Time", "default": "0s", range: "0s - 10s" },
@@ -992,7 +1091,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Celebrity", team: "Crewmate Modifier",
         description: "The Celebrity announces how, when and where they died the meeting after they die.",
-        ability: "Lets Everyone Know when and where you Died", icon: 'Celebrity', skillIcon: ['TownOfUs.Resources.ModifierIcons.Celebrity.png'], types: ["Passive", "Death Trigger", "Information"],
+        abilities: [{ name: "Lets Everyone Know when and where you Died", icon: 'TownOfUs.Resources.ModifierIcons.Celebrity.png', description: "Announces death details to everyone after dying." }],
+        icon: 'Celebrity',
+        types: ["Passive", "Death Trigger", "Information"],
         options: [
             { name: "Celebrity", description: "The percentage probability of the Celebrity appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1000,7 +1101,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Diseased", team: "Crewmate Modifier",
         description: "Killing the Diseased increases the killer's kill cooldown.",
-        ability: "Forces your Killer to have longer Cooldown", icon: 'Diseased', skillIcon: ['TownOfUs.Resources.ModifierIcons.Diseased.png'], types: ["Passive", "Death Trigger", "Debuff"],
+        abilities: [{ name: "Forces your Killer to have longer Cooldown", icon: 'TownOfUs.Resources.ModifierIcons.Diseased.png', description: "Increases killer's cooldown upon death." }],
+        icon: 'Diseased',
+        types: ["Passive", "Death Trigger", "Debuff"],
         options: [
             { name: "Diseased", description: "The percentage probability of the Diseased appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Kill Multiplier", description: "How much the Kill Cooldown of the Impostor is increased by", type: "Multiplier", "default": "3x", range: "N/A" }
@@ -1009,7 +1112,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Frosty", team: "Crewmate Modifier",
         description: "Killing the Frosty slows the killer for a short duration.",
-        ability: "Forces your Killer to Go Slower", icon: 'Frosty', skillIcon: ['TownOfUs.Resources.ModifierIcons.Frosty.png'], types: ["Passive", "Death Trigger", "Debuff"],
+        abilities: [{ name: "Forces your Killer to Go Slower", icon: 'TownOfUs.Resources.ModifierIcons.Frosty.png', description: "Slows the killer for a short duration upon death." }],
+        icon: 'Frosty',
+        types: ["Passive", "Death Trigger", "Debuff"],
         options: [
             { name: "Frosty", description: "The percentage probability of the Frosty appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Chill Duration", description: "The duration of the chill after killing the Frosty", type: "Time", "default": "10s", range: "N/A" },
@@ -1019,7 +1124,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Multitasker", team: "Crewmate Modifier",
         description: "The Multitasker's tasks are transparent.",
-        ability: "Allows you to See through Task", icon: 'Multitasker', skillIcon: ['TownOfUs.Resources.ModifierIcons.Multitasker.png'], types: ["Passive", "Utility"],
+        abilities: [{ name: "Allows you to See through Task", icon: 'TownOfUs.Resources.ModifierIcons.Multitasker.png', description: "Makes tasks transparent for easier visibility." }],
+        icon: 'Multitasker',
+        types: ["Passive", "Utility"],
         options: [
             { name: "Multitasker", description: "The percentage probability of the Multitasker appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1027,7 +1134,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Taskmaster", team: "Crewmate Modifier",
         description: "The Taskmaster completes a random task on the completion of each meeting.",
-        ability: "Allows you to complete Tasks Faster", icon: 'Taskmaster', skillIcon: ['TownOfUs.Resources.ModifierIcons.TaskMaster.png'], types: ["Passive", "Utility"],
+        abilities: [{ name: "Allows you to complete Tasks Faster", icon: 'TownOfUs.Resources.ModifierIcons.TaskMaster.png', description: "Completes a random task after each meeting." }],
+        icon: 'Taskmaster',
+        types: ["Passive", "Utility"],
         options: [
             { name: "Taskmaster", description: "The percentage probability of the Taskmaster appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1035,7 +1144,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Torch", team: "Crewmate Modifier",
         description: "The Torch's vision doesn't get reduced when the lights are sabotaged.",
-        ability: "Allows you to see more", icon: 'Torch', skillIcon: ['TownOfUs.Resources.ModifierIcons.Torch.png'], types: ["Passive", "Utility"],
+        abilities: [{ name: "Allows you to see more", icon: 'TownOfUs.Resources.ModifierIcons.Torch.png', description: "Maintains full vision during light sabotages." }],
+        icon: 'Torch',
+        types: ["Passive", "Utility"],
         options: [
             { name: "Torch", description: "The percentage probability of the Torch appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1044,7 +1155,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Noisemaker", team: "Crewmate Modifier",
         description: "After your death, you will show a red body indicator to everyone on the map.",
-        ability: "Show Red Body Indicator", icon: 'Noisemaker', skillIcon: ['TownOfUs.Resources.ModifierIcons.Noisemaker.png'], types: ["Passive", "Postmortem", "Detection"],
+        abilities: [{ name: "Show Red Body Indicator", icon: 'TownOfUs.Resources.ModifierIcons.Noisemaker.png', description: "Shows a red body indicator to everyone after death." }],
+        icon: 'Noisemaker',
+        types: ["Passive", "Postmortem", "Detection"],
         options: [
             { name: "Noisemaker", description: "The percentage probability of the Noisemaker appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1052,7 +1165,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Operative", team: "Crewmate Modifier",
         description: "Use cameras at anytime, anywhere with a limited battery charge.",
-        ability: "Portable Cameras", icon: 'Operative', skillIcon: ['TownOfUs.Resources.CamButton.png'], types: ["Active", "Postmortem", "Utility"],
+        abilities: [{ name: "Portable Cameras", icon: 'TownOfUs.Resources.CamButton.png', description: "Accesses cameras anytime, anywhere with limited battery." }],
+        icon: 'Operative',
+        types: ["Active", "Postmortem", "Utility"],
         options: [
             { name: "Operative", description: "The percentage probability of the Operative appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1060,7 +1175,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Rotting", team: "Crewmate Modifier",
         description: "After a set amount of time, your body will rot away, preventing you from being reported",
-        ability: "Body Rot", icon: 'Rotting', skillIcon: ['TownOfUs.Resources.ModifierIcons.Rotting.png'], types: ["Passive", "Postmortem", "Utility"],
+        abilities: [{ name: "Body Rot", icon: 'TownOfUs.Resources.ModifierIcons.Rotting.png', description: "Body rots away after time, preventing reports." }],
+        icon: 'Rotting',
+        types: ["Passive", "Postmortem", "Utility"],
         options: [
             { name: "Rotting", description: "The percentage probability of the Rotting appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1068,7 +1185,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Scientist", team: "Crewmate Modifier",
         description: "Access Vitals anytime, anywhere with a limited battery charge.",
-        ability: "Portable Vitals", icon: 'Scientist', skillIcon: ['TownOfUs.Resources.VitalsButton.png'], types: ["Active", "Postmortem", "Utility"],
+        abilities: [{ name: "Portable Vitals", icon: 'TownOfUs.Resources.VitalsButton.png', description: "Accesses vitals anytime, anywhere with limited battery." }],
+        icon: 'Scientist',
+        types: ["Active", "Postmortem", "Utility"],
         options: [
             { name: "Scientist", description: "The percentage probability of the Scientist appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1076,7 +1195,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Scout", team: "Crewmate Modifier",
         description: "While you can see twice as far as a regular Crewmate, your vision falters when lights are off.",
-        ability: "Enhanced Vision", icon: 'Scout', skillIcon: ['TownOfUs.Resources.ModifierIcons.Scout.png'], types: ["Passive", "Postmortem", "Detection"],
+        abilities: [{ name: "Enhanced Vision", icon: 'TownOfUs.Resources.ModifierIcons.Scout.png', description: "Has enhanced vision but falters when lights are off." }],
+        icon: 'Scout',
+        types: ["Passive", "Postmortem", "Detection"],
         options: [
             { name: "Scout", description: "The percentage probability of the Scout appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1085,7 +1206,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Button Barry", team: "Global Modifier",
         description: "Button Barry has the ability to call a meeting from anywhere on the map, even during sabotages. They have the same amount of meetings as a regular player.",
-        ability: "Portable Button", icon: 'ButtonBarry', skillIcon: ['TownOfUs.Resources.BarryButton.png'], types: ["Passive", "Utility"],
+        abilities: [{ name: "Portable Button", icon: 'TownOfUs.Resources.BarryButton.png', description: "Calls a meeting from anywhere, even during sabotages." }],
+        icon: 'ButtonBarry',
+        types: ["Passive", "Utility"],
         options: [
             { name: "Button Barry", description: "The percentage probability of Button Barry appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1093,7 +1216,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Flash", team: "Global Modifier",
         description: "The Flash travels at a faster speed in comparison to a normal player.",
-        ability: "Go Faster", icon: 'Flash', skillIcon: ['TownOfUs.Resources.ModifierIcons.Flash.png'], types: ["Passive", "Buff"],
+        abilities: [{ name: "Go Faster", icon: 'TownOfUs.Resources.ModifierIcons.Flash.png', description: "Moves at a faster speed." }],
+        icon: 'Flash',
+        types: ["Passive", "Buff"],
         options: [
             { name: "Flash", description: "The percentage probability of the Flash appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Speed", description: "How fast the Flash moves in comparison to normal", type: "Multiplier", "default": "1.25x", range: "N/A" }
@@ -1102,7 +1227,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Giant", team: "Global Modifier",
         description: "The Giant is a gigantic Crewmate, that has a decreased walk speed.",
-        ability: "Be Bigger and Slower", icon: 'Giant', skillIcon: ['TownOfUs.Resources.ModifierIcons.Giant.png'], types: ["Passive", "Buff"],
+        abilities: [{ name: "Be Bigger and Slower", icon: 'TownOfUs.Resources.ModifierIcons.Giant.png', description: "Is larger and moves slower." }],
+        icon: 'Giant',
+        types: ["Passive", "Buff"],
         options: [
             { name: "Giant", description: "The percentage probability of the Giant appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Speed", description: "How fast the Giant moves in comparison to normal", type: "Multiplier", "default": "0.75x", range: "N/A" }
@@ -1111,7 +1238,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Immovable", team: "Global Modifier",
         description: "The Immovable cannot be moved by meetings, transports and disperse.",
-        ability: "Stay in the same spot", icon: 'Immovable', skillIcon: ['TownOfUs.Resources.ModifierIcons.Immovable.png'], types: ["Passive", "Defense"],
+        abilities: [{ name: "Stay in the same spot", icon: 'TownOfUs.Resources.ModifierIcons.Immovable.png', description: "Cannot be moved by meetings, transports, or disperse." }],
+        icon: 'Immovable',
+        types: ["Passive", "Defense"],
         options: [
             { name: "Immovable", description: "The percentage probability of the Immovable appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1119,7 +1248,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Lovers", team: "Global Modifier",
         description: "The Lovers are two players who are linked together. These two players get picked randomly between Crewmates and Impostors. They gain the primary objective to stay alive together. If they are both among the last 3 players, they win. In order to do so, they gain access to a private chat, only visible by them in between meetings. However, they can also win with their respective team, hence why the Lovers do not know the role of the other lover.",
-        ability: "Win with Lover", icon: 'Lover', skillIcon: ['TownOfUs.Resources.ModifierIcons.Lover.png'], types: ["Passive", "Social", "Win Condition"],
+        abilities: [{ name: "Win with Lover", icon: 'TownOfUs.Resources.ModifierIcons.Lover.png', description: "Wins if both Lovers survive and are among the last 3 players." }],
+        icon: 'Lover',
+        types: ["Passive", "Social", "Win Condition"],
         options: [
             { name: "Lovers", description: "The percentage probability of the Lovers appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Both Lovers Die", description: "Whether the other Lover automatically dies if the other does", type: "Toggle", "default": "True", range: "N/A" },
@@ -1131,7 +1262,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Mini", team: "Global Modifier",
         description: "The Mini is a tiny Crewmate.",
-        ability: "Be Smaller and Faster", icon: 'Mini', skillIcon: ['TownOfUs.Resources.ModifierIcons.Mini.png'], types: ["Passive", "Debuff"],
+        abilities: [{ name: "Be Smaller and Faster", icon: 'TownOfUs.Resources.ModifierIcons.Mini.png', description: "Is smaller and moves faster." }],
+        icon: 'Mini',
+        types: ["Passive", "Debuff"],
         options: [
             { name: "Mini", description: "The percentage probability of the Mini appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1139,7 +1272,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Radar", team: "Global Modifier",
         description: "The Radar is a Crewmate who knows where the closest player is to them.",
-        ability: "See Closest Player", icon: 'Radar', skillIcon: ['TownOfUs.Resources.ModifierIcons.Radar.png'], types: ["Passive", "Detection"],
+        abilities: [{ name: "See Closest Player", icon: 'TownOfUs.Resources.ModifierIcons.Radar.png', description: "Knows the location of the closest player." }],
+        icon: 'Radar',
+        types: ["Passive", "Detection"],
         options: [
             { name: "Radar", description: "The percentage probability of the Radar appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1147,7 +1282,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Satellite", team: "Global Modifier",
         description: "The Satellite has a 1 time use ability to detect all dead bodies.",
-        ability: "Detect Dead Bodies", icon: 'Satellite', skillIcon: ['TownOfUs.Resources.BroadcastButton.png'], types: ["Active", "Detection"],
+        abilities: [{ name: "Detect Dead Bodies", icon: 'TownOfUs.Resources.BroadcastButton.png', description: "Detects all dead bodies once per game." }],
+        icon: 'Satellite',
+        types: ["Active", "Detection"],
         options: [
             { name: "Satellite", description: "The percentage probability of the Satellite appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Broadcast Duration", description: "The duration of the broadcast arrows", type: "Time", "default": "10s", range: "N/A" }
@@ -1156,7 +1293,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Shy", team: "Global Modifier",
         description: "The Shy becomes transparent when standing still for a short duration.",
-        ability: "Go Invisible", icon: 'Shy', skillIcon: ['TownOfUs.Resources.ModifierIcons.Shy.png'], types: ["Passive", "Utility"],
+        abilities: [{ name: "Go Invisible", icon: 'TownOfUs.Resources.ModifierIcons.Shy.png', description: "Becomes transparent when standing still for a short duration." }],
+        icon: 'Shy',
+        types: ["Passive", "Utility"],
         options: [
             { name: "Shy", description: "The percentage probability of the Shy appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Transparency Delay", description: "The delay until the Shy starts turning transparent", type: "Time", "default": "5s", range: "N/A" },
@@ -1167,7 +1306,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Sixth Sense", team: "Global Modifier",
         description: "The Sixth Sense is a Crewmate who can see who interacts with them.",
-        ability: "Know who interacts w/ you", icon: 'SixthSense', skillIcon: ['TownOfUs.Resources.ModifierIcons.SixthSense.png'], types: ["Passive", "Detection"],
+        abilities: [{ name: "Know who interacts w/ you", icon: 'TownOfUs.Resources.ModifierIcons.SixthSense.png', description: "Knows who interacts with them." }],
+        icon: 'SixthSense',
+        types: ["Passive", "Detection"],
         options: [
             { name: "Sixth Sense", description: "The percentage probability of the Sixth Sense appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1175,7 +1316,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Sleuth", team: "Global Modifier",
         description: "The Sleuth is a Crewmate who gains knowledge from reporting dead bodies. During meetings the Sleuth can see the roles of all players in which they've reported.",
-        ability: "Know Bodies's Role", icon: 'Sleuth', skillIcon: ['TownOfUs.Resources.ModifierIcons.Sleuth.png'], types: ["Passive", "Detection"],
+        abilities: [{ name: "Know Bodies's Role", icon: 'TownOfUs.Resources.ModifierIcons.Sleuth.png', description: "Gains knowledge and sees roles of reported players." }],
+        icon: 'Sleuth',
+        types: ["Passive", "Detection"],
         options: [
             { name: "Sleuth", description: "The percentage probability of the Sleuth appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1183,7 +1326,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Tiebreaker", team: "Global Modifier",
         description: "If any vote is a draw, the Tiebreaker's vote will go through. If they voted another player, they will get voted out.",
-        ability: "Break Tie Vote", icon: 'Tiebreaker', skillIcon: ['TownOfUs.Resources.ModifierIcons.Tiebreaker.png'], types: ["Active", "Utility"],
+        abilities: [{ name: "Break Tie Vote", icon: 'TownOfUs.Resources.ModifierIcons.Tiebreaker.png', description: "Breaks tie votes, making their vote count in a draw." }],
+        icon: 'Tiebreaker',
+        types: ["Active", "Utility"],
         options: [
             { name: "Tiebreaker", description: "The percentage probability of the Tiebreaker appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1192,7 +1337,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Egotist", team: "Crewmate Alliance modifier",
         description: "As the Egotist, you can only win if Crewmates lose, but you can still win even in death. If no Crewmates remain after a meeting ends, you will leave in victory, but the game will continue. Egotist Snitch and Mayor also reveal themselves as evil to Neutrals and Impostors alike, and they do not get punished when killing Crewmates.",
-        ability: "Betray", icon: 'Egotist', skillIcon: ['TownOfUs.Resources.ModifierIcons.Egotist.png'], types: ["Passive", "Win Condition", "Information"],
+        abilities: [{ name: "Betray", icon: 'TownOfUs.Resources.ModifierIcons.Egotist.png', description: "Wins if Crewmates lose, even in death. Reveals as evil." }],
+        icon: 'Egotist',
+        types: ["Passive", "Win Condition", "Information"],
         options: [
             { name: "Egotist", description: "The percentage probability of the Egotist appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1201,7 +1348,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Disperser", team: "Impostor Modifier",
         description: "The Disperser is an Impostor who has a 1 time use ability to send all players to a random vent. This includes miner vents. Does not appear on Airship or Submerged.",
-        ability: "Disperse Players", icon: 'Disperser', skillIcon: ['TownOfUs.Resources.DisperseButton.png'], types: ["Active", "Sabotage"],
+        abilities: [{ name: "Disperse Players", icon: 'TownOfUs.Resources.DisperseButton.png', description: "Sends all players to a random vent (1-time use)." }],
+        icon: 'Disperser',
+        types: ["Active", "Sabotage"],
         options: [
             { name: "Disperser", description: "The percentage probability of the Disperser appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1209,7 +1358,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Double Shot", team: "Impostor Modifier",
         description: "Double Shot is an Impostor who gets an extra life when assassinating. Once they use their life they are indicated with a red flash and can no longer guess the person who they guessed wrong for the remainder of that meeting.",
-        ability: "Guess twice", icon: 'DoubleShot', skillIcon: ['TownOfUs.Resources.Guess.png'], types: ["Passive", "Kill", "Defense"],
+        abilities: [{ name: "Guess twice", icon: 'TownOfUs.Resources.Guess.png', description: "Gets an extra life when assassinating." }],
+        icon: 'DoubleShot',
+        types: ["Passive", "Kill", "Defense"],
         options: [
             { name: "Double Shot", description: "The percentage probability of Double Shot appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
@@ -1217,7 +1368,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Saboteur", team: "Impostor Modifier",
         description: "The Saboteur is an Impostor with a passive sabotage cooldown reduction.",
-        ability: "Reduce Sabotage Cooldown", icon: 'Saboteur', skillIcon: ['TownOfUs.Resources.ModifierIcons.Saboteur.png'], types: ["Passive", "Sabotage"],
+        abilities: [{ name: "Reduce Sabotage Cooldown", icon: 'TownOfUs.Resources.ModifierIcons.Saboteur.png', description: "Passively reduces sabotage cooldowns." }],
+        icon: 'Saboteur',
+        types: ["Passive", "Sabotage"],
         options: [
             { name: "Saboteur", description: "The percentage probability of the Saboteur appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Reduced Sabotage Bonus", description: "The amount of time removed from the Saboteur's sabotage cooldowns", type: "Time", "default": "10s", range: "N/A" }
@@ -1226,7 +1379,9 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Underdog", team: "Impostor Modifier",
         description: "The Underdog is an Impostor with a prolonged kill cooldown. When they are the only remaining Impostor, they will have their kill cooldown shortened.",
-        ability: "Less Kill Cooldown Solo", icon: 'Underdog', skillIcon: ['TownOfUs.Resources.ModifierIcons.Underdog.png'], types: ["Passive", "Kill", "Buff"],
+        abilities: [{ name: "Less Kill Cooldown Solo", icon: 'TownOfUs.Resources.ModifierIcons.Underdog.png', description: "Has prolonged kill cooldown, shortened when solo Impostor." }],
+        icon: 'Underdog',
+        types: ["Passive", "Kill", "Buff"],
         options: [
             { name: "Underdog", description: "The percentage probability of the Underdog appearing", type: "Percentage", "default": "0%", range: "N/A" },
             { name: "Kill Cooldown Bonus", description: "The amount of time added or removed from the Underdog's Kill Cooldown", type: "Time", "default": "5s", range: "N/A" },
@@ -1237,12 +1392,15 @@ const allEntitiesData = [
     {
         category: "Modifier", name: "Telepath", team: "Impostor Modifier",
         description: "Know when your teammate kills (maybe where depending on settings), and depending on other settings, know when and/or where they die.",
-        ability: "Teammate Info", icon: 'Telepath', skillIcon: ['TownOfUs.Resources.ModifierIcons.Telepath.png'], types: ["Passive", "Postmortem", "Information"],
+        abilities: [{ name: "Teammate Info", icon: 'TownOfUs.Resources.ModifierIcons.Telepath.png', description: "Knows when and where teammates kill or die." }],
+        icon: 'Telepath',
+        types: ["Passive", "Postmortem", "Information"],
         options: [
             { name: "Telepath", description: "The percentage probability of the Telepath appearing", type: "Percentage", "default": "0%", range: "N/A" }
         ]
     }
 ];
+
 
 // This object will map role/modifier names to their colors for text highlighting
 const entityNamesAndColors = [];
@@ -1309,8 +1467,8 @@ function getModifierImageUrl(iconName) {
     return `Media/TownOfUs.Resources.ModifierIcons.${iconName}.png`;
 }
 
-function getAbilityImageUrl(skillIconName) {
-    return `Media/${skillIconName}`; // Assuming Ability Icons are like this
+function getAbilityImageUrl(abilitiesIconName) {
+    return `Media/${abilitiesIconName}`; // Assuming Ability Icons are like this
 }
 
 
@@ -1441,55 +1599,56 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
 
 
     // --- Abilities Section (using a table, handling multiple abilities) ---
-      modalAbilityTableBody.innerHTML = ''; // Clear previous content
-    const abilities = entity.ability ? entity.ability.split(' / ').map(a => a.trim()) : [];
-    const skillIcons = Array.isArray(entity.skillIcon) ? entity.skillIcon : (entity.skillIcon ? [entity.skillIcon] : []);
+     // ... (inside populateDetailModal function in script.js)
 
-    if (abilities.length > 0) {
-        modalAbilityTableContainer.style.display = 'block'; // Show the table container
+// --- Abilities Section (using a table) ---
+modalAbilityTableBody.innerHTML = ''; // Clear previous content
+// Use the new 'abilities' array directly
+const abilities = Array.isArray(entity.abilities) ? entity.abilities : [];
 
-        abilities.forEach((abilityText, index) => {
-            const row = document.createElement('tr');
-            row.classList.add('border-b', 'border-gray-800');
+if (abilities.length > 0) {
+    modalAbilityTableContainer.style.display = 'block'; // Show the table container
 
-            // Icon Cell
-            const iconCell = document.createElement('td');
-            iconCell.classList.add('py-2', 'px-1', 'md:px-2', 'align-top');
-            const abilityIconImg = document.createElement('img');
-            const currentSkillIcon = skillIcons[index] || skillIcons[0] || 'default.png'; // Fallback to first or generic
-            abilityIconImg.src = getAbilityImageUrl(currentSkillIcon);
-            abilityIconImg.alt = `${abilityText} Icon`;
-            abilityIconImg.classList.add('w-16', 'h-16', 'object-contain', 'flex-shrink-0');
-            abilityIconImg.style.filter = `drop-shadow(0 0 6px ${uniqueColor})`; // Apply glow
-            abilityIconImg.onerror = function() { this.onerror=null; this.src='placeholder.png'; }; // Fallback image on error
-            iconCell.appendChild(abilityIconImg);
-            row.appendChild(iconCell);
+    abilities.forEach(ability => { // Loop directly over each ability object
+        const row = document.createElement('tr');
+        row.classList.add('border-b', 'border-gray-800');
 
-            // Ability Name Cell
-            const nameCell = document.createElement('td');
-            nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top', 'font-[Amatic_SC]');
-            nameCell.textContent = abilityText;
-            row.appendChild(nameCell);
+        // Icon Cell
+        const iconCell = document.createElement('td');
+        iconCell.classList.add('py-2', 'px-1', 'md:px-2', 'align-top');
+        const abilityIconImg = document.createElement('img');
+        // Use ability.icon (which should be the full path like 'TownOfUs.Resources.CrewButtons.InspectButton.png')
+        abilityIconImg.src = getAbilityImageUrl(ability.icon); // Assuming ability.icon is already a full path
+        abilityIconImg.alt = `${ability.name} Icon`;
+        abilityIconImg.classList.add('w-16', 'h-16', 'object-contain', 'flex-shrink-0');
+        // If you had a glow effect, re-add it here based on uniqueColor
+        // abilityIconImg.style.filter = `drop-shadow(0 0 6px ${uniqueColor})`;
+        abilityIconImg.onerror = function() { this.onerror=null; this.src='placeholder.png'; }; // Fallback image on error
+        iconCell.appendChild(abilityIconImg);
+        row.appendChild(iconCell);
 
-            // NEW: Ability Description Cell
-            const descriptionCell = document.createElement('td');
-            descriptionCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-sm', 'text-gray-400', 'align-top');
-            // Placeholder: You'll need to link this to your actual descriptions.
-            // Example if you hardcode it: descriptionCell.textContent = "Description for " + abilityText;
-            // Example if you adopt the new array-of-objects structure for abilities:
-            // Assuming 'entity.abilities' is an array of objects like { name: "...", description: "..." }
-            const foundAbility = (Array.isArray(entity.abilities) ? entity.abilities : []).find(ab => ab.name === abilityText);
-            descriptionCell.textContent = foundAbility ? foundAbility.description : "No specific description provided.";
-            // If you intend to add descriptions to your 'ability' string, you'll need parsing logic here.
-            // For now, it will simply state "No specific description provided." unless you update your data structure.
-            row.appendChild(descriptionCell);
+        // Ability Name Cell
+        const nameCell = document.createElement('td');
+        nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top', 'font-[Amatic_SC]');
+        // Use ability.name
+        nameCell.textContent = ability.name;
+        nameCell.style.color = uniqueColor; // Apply unique color to ability name
+        row.appendChild(nameCell);
 
-            modalAbilityTableBody.appendChild(row);
-        });
-    } else {
-        modalAbilityTableContainer.style.display = 'none'; // Hide container if no ability data
-    }
+        // Ability Description Cell
+        const descriptionCell = document.createElement('td');
+        descriptionCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-sm', 'text-gray-400', 'align-top');
+        // Use ability.description
+        descriptionCell.textContent = ability.description;
+        row.appendChild(descriptionCell);
 
+        modalAbilityTableBody.appendChild(row);
+    });
+} else {
+    modalAbilityTableContainer.style.display = 'none'; // Hide container if no ability data
+}
+
+// ... (rest of your populateDetailModal function)
 
     // --- Options Section (using a table) ---
     modalOptionsTableBody.innerHTML = ''; // Clear previous content
@@ -1791,89 +1950,85 @@ function closeDetailModal() {
     // Function to create a role/modifier card
    // Function to create a role/modifier card
     function createCard(entity) {
-        const card = document.createElement('div');
-        // Apply responsive grid layout for cards and styling
-        card.className = `role-card bg-gray-700 rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105 cursor-pointer relative overflow-hidden`;
+    const card = document.createElement('div');
+    // Apply responsive grid layout for cards and styling
+    card.className = `role-card bg-gray-700 rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105 cursor-pointer relative overflow-hidden`;
 
-        // Define uniqueColor at the beginning of createCard
-        const uniqueColor = roleColors[entity.name] || modifierColors[entity.name] || '#7e22ce';
-        const glowColor = uniqueColor;
+    // Define uniqueColor at the beginning of createCard
+    const uniqueColor = roleColors[entity.name] || modifierColors[entity.name] || '#7e22ce';
+    const glowColor = uniqueColor;
 
-        // Apply dynamic styling for border and shadow
-        card.style.boxShadow = `0 0 15px ${glowColor}`;
-        card.style.setProperty('--card-scrollbar-thumb-color', uniqueColor);
-        card.style.setProperty('--card-scrollbar-track-color', 'rgba(31, 31, 31, 0.5)');
+    // Apply dynamic styling for border and shadow
+    card.style.boxShadow = `0 0 15px ${glowColor}`;
+    card.style.setProperty('--card-scrollbar-thumb-color', uniqueColor);
+    card.style.setProperty('--card-scrollbar-track-color', 'rgba(31, 31, 31, 0.5)');
 
-        card.addEventListener('mouseenter', function() {
-            this.style.boxShadow = `0 0 20px ${uniqueColor + '90'}`;
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.boxShadow = `0 0 15px ${glowColor}`;
-        });
+    card.addEventListener('mouseenter', function() {
+        this.style.boxShadow = `0 0 20px ${uniqueColor + '90'}`;
+    });
+    card.addEventListener('mouseleave', function() {
+        this.style.boxShadow = `0 0 15px ${glowColor}`;
+    });
 
-        const teamKey = entity.team.split(' ')[0]; // Extract primary team for color
-        const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.2)', boxShadow: '0 0 8px #00ffff' };
+    const teamKey = entity.team.split(' ')[0]; // Extract primary team for color
+    const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.2)', boxShadow: '0 0 8px #00ffff' };
 
-        const mainIconPath = entity.category === 'Role' ? getRoleImageUrl(entity.icon) : getModifierImageUrl(entity.icon);
-        const coloredDescription = colorizeRoleNamesInText(entity.description); // Apply colorization
+    // Use getAssetImagePath for the main icon too for consistency
+    const mainIconPath = getRoleImageUrl(entity.icon);
+    const coloredDescription = colorizeRoleNamesInText(entity.description); // Apply colorization
 
-        // Card HTML structure
-        card.innerHTML = `
-            <div class="role-card-header flex items-center mb-3">
-              <img src="${mainIconPath}" alt="${entity.name} Icon" class="w-16 h-16 object-contain mr-4 "
-                   onerror="this.onerror=null;this.src='placeholder.png';"
+    // Card HTML structure
+    card.innerHTML = `
+        <div class="role-card-header flex items-center mb-3">
+          <img src="${mainIconPath}" alt="${entity.name} Icon" class="w-16 h-16 object-contain mr-4 "
+                   onerror="this.onerror=null;this.src='assets/placeholder_image.png';"
                    style="filter: drop-shadow(0 0 6px ${uniqueColor});">
-              <div class="text-container flex flex-col items-start">
-                <h2 class="text-2xl font-bold font-[Amatic_SC]" style="color: ${uniqueColor};">${entity.name.toUpperCase()}</h2>
-                <span class="team-display-box text-xs font-semibold px-2 py-1 rounded-full mt-1" style="
-                    background-color: ${teamStyle.boxBg};
-                    box-shadow: ${teamStyle.boxShadow};
-                    color: ${teamStyle.dotColor};
-                    border: 1px solid ${teamStyle.dotColor};
-                ">
-                    TEAM: ${entity.team.toUpperCase()}
-                </span>
-              </div>
-            </div>
+          <div class="text-container flex flex-col items-start">
+            <h2 class="text-2xl font-bold font-[Amatic_SC]" style="color: ${uniqueColor};">${entity.name.toUpperCase()}</h2>
+            <span class="team-display-box text-xs font-semibold px-2 py-1 rounded-full mt-1" style="
+                background-color: ${teamStyle.boxBg};
+                box-shadow: ${teamStyle.boxShadow};
+                color: ${teamStyle.dotColor};
+                border: 1px solid ${teamStyle.dotColor};
+            ">
+                TEAM: ${entity.team.toUpperCase()}
+            </span>
+          </div>
+        </div>
 
-            <div class="description-abilities-settings border-t border-gray-600 pt-3 mt-3">
-                <p class="description-text text-gray-300 text-sm leading-relaxed mb-4 border-l-4 pl-3" style="border-color: ${uniqueColor};">
-                  ${coloredDescription}
-                </p>
+        <div class="description-abilities-settings border-t border-gray-600 pt-3 mt-3">
+            <p class="description-text text-gray-300 text-sm leading-relaxed mb-4 border-l-4 pl-3" style="border-color: ${uniqueColor};">
+                ${coloredDescription}
+            </p>
 
-                <div class="abilities-section">
-                    <h3 class="text-cyan-400 text-base font-semibold mb-2">Abilities:</h3>
-                    <ul class="list-disc list-inside text-gray-200 text-sm">
-                    ${
-                        // Check if entity.skillIcon is an array, if not, convert it to one for consistent mapping
-                        (Array.isArray(entity.skillIcon) ? entity.skillIcon : (entity.skillIcon ? [entity.skillIcon] : []))
-                        .map((iconFileName, index) => {
-                            const abilityParts = entity.ability ? entity.ability.split(' / ').map(a => a.trim()) : [];
-                            const abilityText = abilityParts[index] || 'N/A';
-                            const iconHtml = iconFileName
-                                ? `<img src="${getAbilityImageUrl(iconFileName)}" alt="${abilityText} Icon" class="w-6 h-6 object-contain inline-block mr-2" style="filter: drop-shadow(0 0 3px ${uniqueColor});">`
-                                : '';
-                            return `
-                                <li class="flex items-center mb-1">
-                                    ${iconHtml}<span>${abilityText}</span>
-                                </li>
-                            `;
-                        }).join('')
-                    }
-                    ${ // Fallback if no abilities are listed or skillIcon is empty
-                        (!entity.ability || (Array.isArray(entity.skillIcon) && entity.skillIcon.length === 0))
-                        ? `<li class="text-center text-gray-400 italic text-xs">No specific abilities.</li>`
-                        : ''
-                    }
-                    </ul>
+            <div class="abilities-section">
+                <h3 class="text-cyan-400 text-base font-semibold mb-2">Abilities:</h3>
+                <div class="flex flex-wrap justify-center gap-2 mt-2 p-1 bg-gray-900 rounded">
+                ${
+                    // Check if entity.abilities exists and is an array, then map over it
+                    (Array.isArray(entity.abilities) && entity.abilities.length > 0)
+                    ? entity.abilities.map(ability => `
+                        <div class="flex flex-col items-center text-center px-1 py-0.5 rounded bg-gray-700 transform transition-transform duration-150 hover:scale-110 display:inline">
+                            <img src="${getAbilityImageUrl(ability.icon)}" alt="${ability.name} Icon" class="w-8 h-8 object-contain mb-0.5" onerror="this.onerror=null;this.src='assets/placeholder_image.png';" style="filter: drop-shadow(0 0 3px ${uniqueColor});">
+                            <span class="text-xs font-semibold text-gray-200 leading-none">${ability.name}</span>
+                        </div>
+                    `).join('')
+                    : `<p class="text-center text-gray-400 italic text-xs col-span-full">No specific abilities listed.</p>`
+                }
                 </div>
             </div>
-        `;
-        card.addEventListener('click', () => {
+        </div>
+    `;
+    card.addEventListener('click', () => {
         populateDetailModal(entity); // Pass the 'entity' object related to this card
     });
-        return card;
-    }
+    return card;
+}
+
+
+// Make sure roleColors, modifierColors, teamColors, and colorizeRoleNamesInText are defined
+// (they seem to be present in your existing script.js)
+
 
     // Function to render/filter cards
     function renderCards() {
