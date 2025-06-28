@@ -21,7 +21,7 @@
         <p style="font-size: 12px; margin-bottom: 5px;">Credit to Malkiz, Quarties & OrzechMC for Font and Credit to Atony for all Role and Modifier Logos and ability images</p>
         <b></b>
         <a><button class="tab-button active" data-tab="wiki">Role Wiki</button></a>
-        <a><button class="tab-button" data-tab="roles">Shooting Notes</button></a>
+        <a><button class="tab-button" data-tab="roles">Player Roles</button></a>
         <a><button class="tab-button" data-tab="notes">General Notes</button></a>
       </nav>
     </div>
@@ -68,7 +68,7 @@
 
     <!-- Player Roles Tab -->
     <div id="roles-tab" class="tab-content">
-      <h2 class="headers">Shooting Notes</h2>
+      <h2 class="headers">Jot Down Player Roles</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="playerRolesList">
         <!-- Player entries will be added here by JavaScript -->
       </div>
@@ -113,19 +113,25 @@
                 <p id="modal-description" class="text-gray-300 text-base leading-relaxed mb-6 border-l-4 pl-4"></p>
 <h2 id="modal-name" class="text-4xl md:text-5xl font-bold font-[Amatic_SC]"></h2>
 
-<h3 class="modal-section-title text-cyan-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC]">Abilities</h3>
-<div id="modal-ability-table-container" class="my-4 p-2 md:p-4 bg-gray-800 rounded-lg">
-    <table class="w-full text-left table-fixed">
-        <thead>
-            <tr class="border-b border-gray-700">
-                <th class="w-1/4 py-2 px-1 md:px-2 text-x3 font-bold font-[Amatic_SC] text-cyan-400">Icon</th>
-                <th class="w-3/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Ability</th>
-            </tr>
-        </thead>
-        <tbody id="modal-ability-table-body">
-            </tbody>
-    </table>
-</div>
+<!-- index.html (Partial update, focus on modal-ability-table-container) -->
+
+                <!-- Abilities Section -->
+                <h3 class="modal-section-title text-cyan-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC]">Abilities</h3>
+                <div id="modal-ability-table-container" class="my-4 p-2 md:p-4 bg-gray-800 rounded-lg">
+                    <table class="w-full text-left table-fixed">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Icon</th>
+                                <th class="w-1/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Ability</th>
+                                <!-- NEW: Ability Description Header -->
+                                <th class="w-2/4 py-2 px-1 md:px-2 text-xl font-bold font-[Amatic_SC] text-cyan-400">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-ability-table-body">
+                            <!-- Ability rows will be injected here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
 
 
 <h3 id="modal-settings-section" class="modal-section-title text-yellow-400 mt-6 mb-2 text-2xl font-bold font-[Amatic_SC]">Game Options</h3>
