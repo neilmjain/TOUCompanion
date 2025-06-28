@@ -491,7 +491,7 @@ const allEntitiesData = [
     {
         category: "Role", name: "Imitator", team: "Crewmate",
         description: "The Imitator is a Crewmate that can mimic dead crewamtes. During meetings the Imitator can select who they are going to imitate the following round from the dead. They can choose to use each dead players as many times as they wish.",
-        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.CrewButtons.ImitatorSelect.png', types: ["Utility", "Other"],
+        ability: "Imitate Role", icon: 'Imitator', skillIcon: 'TownOfUs.Resources.ImitateSelect.png', types: ["Utility", "Other"],
         options: [
             { name: "Imitator", description: "The percentage probability of the Imitator appearing", type: "Percentage", default: "0%", range: "N/A" },
             { name: "Imitator Can Become Mayor", description: "Whether the Imitator can permanently become the Mayor", type: "Toggle", default: "True", range: "N/A" }
@@ -500,7 +500,7 @@ const allEntitiesData = [
     {
         category: "Role", name: "Mayor", team: "Crewmate",
         description: "Once per game the Mayor can reveal themselves as the Mayor mid-meeting, once done so they gain an additional 2 votes.",
-        ability: "Reveal as Mayor", icon: 'Mayor', skillIcon: 'TownOfUs.Resources.RevealClean.png', types: ["Utility"],
+        ability: "Reveal as Mayor", icon: 'Mayor', skillIcon: 'TownOfUs.Resources.Reveal.png', types: ["Utility"],
         options: [
             { name: "Mayor", description: "The percentage probability of the Mayor appearing", type: "Percentage", default: "0%", range: "N/A" }
             // Note: The previous "Votes" and "Button Cooldown" from earlier Mayor description are now gone as per this specific doc.
@@ -847,7 +847,7 @@ const allEntitiesData = [
         category: "Role", name: "Venerer", team: "Impostor",
         description: "The Venerer is an Impostor that gains abilities through killing. After their first kill, the Venerer can camouflage themself. After their second kill, the Venerer can sprint. After their third kill, every other player is slowed while their ability is activated. All abilities are activated by the one button and have the same duration.",
         ability: "Camouflage / Sprint / Freeze", icon: 'Venerer',
-        skillIcon: ['TownOfUs.Resources.ImpButtons.CamoflageButton.png','TownOfUs.Resources.ImpButtons.CamoSprintButton.png','TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png'],
+        skillIcon: ['TownOfUs.Resources.ImpButtons.CamouflageButton.png','TownOfUs.Resources.ImpButtons.CamoSprintButton.png','TownOfUs.Resources.ImpButtons.CamoSprintFreezeButton.png'],
         types: ["Sabotage", "Utility"],
         options: [
             { name: "Venerer", description: "The percentage probability of the Venerer appearing", type: "Percentage", "default": "0%", range: "N/A" },
@@ -1409,7 +1409,7 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
     // Set Role Name and Color (Amatic SC font)
     modalName.textContent = entity.name;
     modalName.style.color = uniqueColor;
-    modalName.style.fontSize = '5rem';
+    modalName.style.fontSize = '8vh';
     // Ensure the Amatic SC font class is on the HTML element.
     // We add it here in JS too for robustness, though it's better on HTML directly for static parts.
     if (!modalName.classList.contains('font-[Amatic_SC]')) {
@@ -1434,13 +1434,13 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
     modalIcon.src = mainIconPath;
     modalIcon.alt = `${entity.name} Icon`;
     modalIcon.style.filter = `drop-shadow(0 0 10px ${uniqueColor})`;
-    modalName.style.filter = 'text-shadow(0 0 5px ${uniqueColor})';
 
     // Set Description (colorized)
     modalDescription.innerHTML = typeof colorizeRoleNamesInText === 'function' ? colorizeRoleNamesInText(entity.description) : entity.description;
     modalDescription.style.borderLeftColor = uniqueColor;
 
 
+    // --- Abilities Section (using a table, handling multiple abilities) ---
     modalAbilityTableBody.innerHTML = ''; // Clear previous content
     const abilities = entity.ability ? entity.ability.split(' / ').map(a => a.trim()) : [];
     const skillIcons = Array.isArray(entity.skillIcon) ? entity.skillIcon : (entity.skillIcon ? [entity.skillIcon] : []);
@@ -1452,7 +1452,7 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
             const row = document.createElement('tr');
             row.classList.add('border-b', 'border-gray-800');
 
-            // Icon Cell
+            // Icon Cell: Use specific icon if available, otherwise a placeholder
             const iconCell = document.createElement('td');
             iconCell.classList.add('py-2', 'px-1', 'md:px-2', 'align-top');
             const abilityIconImg = document.createElement('img');
@@ -1465,24 +1465,12 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
             iconCell.appendChild(abilityIconImg);
             row.appendChild(iconCell);
 
-            // Ability Name Cell
+            // Ability Name Cell: Apply Amatic SC font
             const nameCell = document.createElement('td');
-            nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top', 'font-[Amatic_SC]');
+            nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top');
+            nameCell.classList.add('font-[Amatic_SC]'); // Apply Amatic SC font to ability names
             nameCell.textContent = abilityText;
             row.appendChild(nameCell);
-
-            // NEW: Ability Description Cell
-            const descriptionCell = document.createElement('td');
-            descriptionCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-sm', 'text-gray-400', 'align-top');
-            // Placeholder: You'll need to link this to your actual descriptions.
-            // Example if you hardcode it: descriptionCell.textContent = "Description for " + abilityText;
-            // Example if you adopt the new array-of-objects structure for abilities:
-            // Assuming 'entity.abilities' is an array of objects like { name: "...", description: "..." }
-            const foundAbility = (Array.isArray(entity.abilities) ? entity.abilities : []).find(ab => ab.name === abilityText);
-            descriptionCell.textContent = foundAbility ? foundAbility.description : "No specific description provided.";
-            // If you intend to add descriptions to your 'ability' string, you'll need parsing logic here.
-            // For now, it will simply state "No specific description provided." unless you update your data structure.
-            row.appendChild(descriptionCell);
 
             modalAbilityTableBody.appendChild(row);
         });
@@ -1666,18 +1654,18 @@ function closeDetailModal() {
         };
 
         roleInput.addEventListener('input', () => {
-            updatePlayerRoleIconAndStyles();
+            updatePlayerRoleIconAndStyles(); 
             savePlayerRoles();
         });
 
         playerNameInput.addEventListener('input', savePlayerRoles);
 
-       
-    document.querySelectorAll('.remove-player-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    button.closest('.player-entry').remove();
-  });
-});
+        if(removeBtn) {
+        removeBtn.addEventListener('click', () => {
+    playerEntryDiv.remove();
+    });
+    }
+    // Add remove button functionality
 
         updatePlayerRoleIconAndStyles(); // Call immediately on creation
         return playerEntryDiv;
@@ -1702,47 +1690,45 @@ function closeDetailModal() {
     /**
      * Loads player role entries from localStorage and populates the list.
      */
+    function loadPlayerRoles() {
+        if (!playerRolesList) return; // Guard against missing element
+        playerRolesList.innerHTML = '';
+        const savedRoles = localStorage.getItem('amongUsCompanionRoles');
+        if (savedRoles) {
+            try {
+                const roles = JSON.parse(savedRoles);
+                if (roles.length > 0) {
+                    roles.forEach(player => {
+                        playerRolesList.appendChild(createPlayerEntry(player.playerName, player.role));
+                    });
+                } else {
+                    playerRolesList.appendChild(createPlayerEntry());
+                }
+            } catch (e) {
+                console.error("Error parsing saved roles:", e);
+                localStorage.removeItem('amongUsCompanionRoles');
+                playerRolesList.appendChild(createPlayerEntry());
+            }
+        } else {
+            playerRolesList.appendChild(createPlayerEntry());
+        }
+    }
 
-  // Add Player button functionality
-  addPlayerBtn.addEventListener("click", () => {
-    playerRolesList.appendChild(createPlayerEntry());
+    if (addPlayerBtn) {
+        addPlayerBtn.addEventListener('click', () => {
+            playerRolesList.appendChild(createPlayerEntry());
+            playerRolesList.lastElementChild.querySelector('.player-name-input')?.focus(); // Safe focus
+            savePlayerRoles();
+        });
+    }
+
+    
+
+
+  // Clear Roles functionality
+  document.getElementById('clearRolesBtn').addEventListener('click', () => {
+    document.getElementById('playerRolesList').innerHTML = '';
   });
-
-  // Save Roles button functionality (example using localStorage)
-  saveRolesBtn.addEventListener("click", () => {
-    const roles = [];
-    document.querySelectorAll(".player-entry").forEach(entry => {
-      const name = entry.querySelector(".player-name-input").value;
-      const role = entry.querySelector(".player-role-input").value;
-      if (name || role) {
-        roles.push({ name, role });
-      }
-    });
-    localStorage.setItem("playerRoles", JSON.stringify(roles));
-    alert("Roles saved!");
-  });
-
-  // Clear Roles button functionality
-  clearRolesBtn.addEventListener("click", () => {
-    playerRolesList.innerHTML = "";
-    localStorage.removeItem("playerRoles");
-    alert("Roles cleared.");
-  });
-
-  // Optional: Load saved roles on page load
-  const saved = JSON.parse(localStorage.getItem("playerRoles") || "[]");
-  saved.forEach(({ name, role }) => {
-    const playerDiv = document.createElement("div");
-    playerDiv.classList.add("player-entry", "p-4", "bg-gray-800", "rounded-lg");
-
-    playerDiv.innerHTML = `
-      <input type="text" value="${name}" class="player-name-input w-full mb-2 p-2 rounded bg-gray-700 text-white" />
-      <input type="text" value="${role}" class="player-role-input w-full p-2 rounded bg-gray-700 text-white" />
-    `;
-
-    playerRolesList.appendChild(playerDiv);
-  });
-
 
     // --- General Notes Tab Logic ---
     function saveGeneralNotes() {
