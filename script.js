@@ -1536,7 +1536,7 @@ function populateDetailModal(entity) {
         return; // Exit if essential elements are missing or entity data is bad
     }
 const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
-
+modalDescription.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     // Apply color to section titles
     if (abilitiesSectionTitle) {
         abilitiesSectionTitle.style.color = dynamicHeaderColor;
@@ -1648,7 +1648,7 @@ if (abilities.length > 0) {
 }
 
 // ... (rest of your populateDetailModal function)
-modalOptionsTableContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+d
     // --- Options Section (using a table) ---
     modalOptionsTableBody.innerHTML = ''; // Clear previous content
     if (entity.options && entity.options.length > 0) {
