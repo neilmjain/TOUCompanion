@@ -1536,7 +1536,6 @@ function populateDetailModal(entity) {
         return; // Exit if essential elements are missing or entity data is bad
     }
 const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
-modalDescription.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     // Apply color to section titles
     if (abilitiesSectionTitle) {
         abilitiesSectionTitle.style.color = dynamicHeaderColor;
