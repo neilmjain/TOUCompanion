@@ -1563,7 +1563,7 @@ const dynamicHeaderColor = roleColors[entity.name] || teamColorStyle;
 
     // Determine unique color for the entity (Role or Modifier) based on its name
     const uniqueColor = roleColors[entity.name] || modifierColors[entity.name] || '#7e22ce'; // Default purple
-
+    modalAbilityTableContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     // Set Role Name and Color (Amatic SC font)
     modalName.textContent = entity.name;
     modalName.style.color = uniqueColor;
@@ -1626,7 +1626,6 @@ if (abilities.length > 0) {
         abilityIconImg.onerror = function() { this.onerror=null; this.src='placeholder.png'; }; // Fallback image on error
         iconCell.appendChild(abilityIconImg);
         row.appendChild(iconCell);
-
         // Ability Name Cell
         const nameCell = document.createElement('td');
         nameCell.classList.add('py-2', 'px-1', 'md:px-2', 'text-lg', 'font-semibold', 'align-top', 'font-[Amatic_SC]');
@@ -1649,7 +1648,7 @@ if (abilities.length > 0) {
 }
 
 // ... (rest of your populateDetailModal function)
-
+modalOptionsTableContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     // --- Options Section (using a table) ---
     modalOptionsTableBody.innerHTML = ''; // Clear previous content
     if (entity.options && entity.options.length > 0) {
@@ -1974,14 +1973,14 @@ function closeDetailModal() {
     const teamStyle = teamColors[teamKey] || teamColors[entity.team] || { dotColor: 'cyan', boxBg: 'rgba(0, 255, 255, 0.2)', boxShadow: '0 0 8px #00ffff' };
 
     // Use getAssetImagePath for the main icon too for consistency
-    const mainIconPath = getRoleImageUrl(entity.icon);
+    const mainIconPath = entity.category === 'Role' ? getRoleImageUrl(entity.icon) : getModifierImageUrl(entity.icon);
     const coloredDescription = colorizeRoleNamesInText(entity.description); // Apply colorization
 
     // Card HTML structure
     card.innerHTML = `
         <div class="role-card-header flex items-center mb-3">
-          <img src="${mainIconPath}" alt="${entity.name} Icon" class="w-16 h-16 object-contain mr-4 "
-                   onerror="this.onerror=null;this.src='assets/placeholder_image.png';"
+          <img src="${mainIconPath}" alt="${getModifierImageUrl(entity.icon)}" class="w-16 h-16 object-contain mr-4 "
+                   onerror="this.onerror=null;this.src='placeholder.png';"
                    style="filter: drop-shadow(0 0 6px ${uniqueColor});">
           <div class="text-container flex flex-col items-start">
             <h2 class="text-2xl font-bold font-[Amatic_SC]" style="color: ${uniqueColor};">${entity.name.toUpperCase()}</h2>
@@ -1996,24 +1995,43 @@ function closeDetailModal() {
           </div>
         </div>
 
-        <div class="description-abilities-settings border-t border-gray-600 pt-3 mt-3">
+       <div class="description-abilities-settings border-t border-gray-600 pt-3 mt-3">
             <p class="description-text text-gray-300 text-sm leading-relaxed mb-4 border-l-4 pl-3" style="border-color: ${uniqueColor};">
                 ${coloredDescription}
             </p>
 
             <div class="abilities-section">
-                <h3 class="text-cyan-400 text-base font-semibold mb-2">Abilities:</h3>
-                <div class="flex flex-wrap justify-center gap-2 mt-2 p-1 bg-gray-900 rounded">
+                <h3 class="text-cyan-400 text-base font-semibold mb-2 text-left px-2">Abilities:</h3>
+                <div class="
+                    flex flex-col /* Stacks each ability item on a new line */
+                    gap-2 mt-2 p-2 
+                    
+                ">
                 ${
                     // Check if entity.abilities exists and is an array, then map over it
                     (Array.isArray(entity.abilities) && entity.abilities.length > 0)
                     ? entity.abilities.map(ability => `
-                        <div class="flex flex-col items-center text-center px-1 py-0.5 rounded bg-gray-700 transform transition-transform duration-150 hover:scale-110 display:inline">
-                            <img src="${getAbilityImageUrl(ability.icon)}" alt="${ability.name} Icon" class="w-8 h-8 object-contain mb-0.5" onerror="this.onerror=null;this.src='assets/placeholder_image.png';" style="filter: drop-shadow(0 0 3px ${uniqueColor});">
-                            <span class="text-xs font-semibold text-gray-200 leading-none">${ability.name}</span>
+                        <div class="
+                            flex flex-row items-center /* Icon and text on same line, vertically centered */
+                            
+                            p-1 rounded-md 
+                             border-2 border-transparent 
+                            transform transition-all duration-200 
+                            hover:scale-105 hover:bg-gray-700 hover:shadow-lg
+                        " style="
+                            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+                            ;
+                        ">
+                            <img src="${getAbilityImageUrl (ability.icon)}" alt="${ability.name} Icon" 
+                                class="w-7 h-7 object-contain mr-1.5 drop-shadow-md" 
+                                onerror="this.onerror=null;this.src='assets/placeholder_image.png';" 
+                                style="filter: drop-shadow(0 0 3px ${uniqueColor});">
+                            <span id="ability-name" class="text-base font-semibold text-gray-200 leading-tight text-center flex-grow font:1rem"> 
+    ${ability.name}
+</span>
                         </div>
                     `).join('')
-                    : `<p class="text-center text-gray-400 italic text-xs col-span-full">No specific abilities listed.</p>`
+                    : `<p class="text-center text-gray-400 italic text-sm py-4">No specific abilities listed.</p>`
                 }
                 </div>
             </div>
