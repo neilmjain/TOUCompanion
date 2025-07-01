@@ -2012,7 +2012,7 @@ function closeDetailModal() {
             </p>
 
             <div class="abilities-section">
-                <h3 class="text-cyan-400 text-base font-semibold mb-2 text-left px-2">Abilities:</h3>
+                <h3 class="text-cyan-400 text-base font-semibold mb-2 text-left">Abilities:</h3>
                 <div class="
                     flex flex-col /* Stacks each ability item on a new line */
                     gap-2 mt-2 p-2 
