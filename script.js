@@ -1761,6 +1761,17 @@ function closeDetailModal() {
         const roleIconImg = playerEntryDiv.querySelector('.role-icon-small');
         const removeBtn = playerEntryDiv.querySelector('.remove-player-btn');
 
+        if (playerNameInput && roleInput) {
+        playerNameInput.addEventListener('input', () => {
+            // Check if the input value contains " is " (case-insensitive)
+            if (playerNameInput.value.toLowerCase().includes(' is ')) {
+                roleInput.focus(); // Shift focus to the role dropdown
+                // Optional: Remove " is " from the textbox after focusing, or keep it.
+                 playerNameInput.value = playerNameInput.value.replace(/ is /gi, '').trim();
+            }
+        });
+    }
+
         const updatePlayerRoleIconAndStyles = async () => {
             const rawRoleName = roleInput.value.trim();
             let entityForDisplay = null;
