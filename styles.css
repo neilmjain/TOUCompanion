@@ -1027,7 +1027,7 @@ h3{
 }
 #ability-name{
     font-size: 30px;
-    letter-spacing: 1.9px;
+    letter-spacing: 2.6px;
     font-family: 'Amatic SC', cursive;
     color: var(--role-color); /* Fallback to cyan if variable not set */
     text-shadow: 0.05em 0 whitesmoke, 0 0.05em whitesmoke, -0.05em 0 whitesmoke, 0 -0.05em whitesmoke, -0.05em -0.05em whitesmoke, -0.05em 0.05em whitesmoke, 0.05em -0.05em whitesmoke, 0.05em 0.05em whitesmoke;
